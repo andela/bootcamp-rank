@@ -1,7 +1,7 @@
 (function() {
   'use strict';
-  window.app = angular.module('btcmprank', [
-    'btcmprank.controllers',
+  window.app = angular.module('bootrank', [
+    'bootrank.controllers',
     'ui.router',
     'ngMaterial'
   ]);
