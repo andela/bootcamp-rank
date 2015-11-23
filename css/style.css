@@ -32,7 +32,8 @@
   background: url(../images/home.jpg) center center no-repeat;
   background-size: cover;
   text-align: center;
-  height: 90vh;
+  height: 93vh;
+  margin: 0 0px;
   text-align: center;
   padding-bottom: 0;
   display: flex;
