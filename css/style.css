@@ -58,3 +58,16 @@
   padding-top: 10px;
   width: 300px;
 }
+
+md-content {
+  height: 100vh;
+}
+
+.projects {
+  height: 100%;
+  background-color: #00f;
+}
+
+.details {
+  height: 100%;
+}
