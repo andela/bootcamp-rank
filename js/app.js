@@ -4,7 +4,8 @@
     'btcmprank.services',
     'bootrank.controllers',
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'firebase'
   ]);
 
   window.app.run(['$rootScope', '$location', '$state', '$mdSidenav',
@@ -19,7 +20,7 @@
       $stateProvider
         .state('login', {
           url: '/',
-          controller: 'HomeCtrl',
+          controller: 'LoginCtrl',
           templateUrl: 'views/login.html'
         })
         .state('404', {
