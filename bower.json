@@ -1,0 +1,18 @@
+{
+  "name": "btcmprank",
+  "description": "app to rate and vote on bootcamp projects",
+  "main": "index.js",
+  "authors": [
+    "andela-cganga"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/andela-cganga/btcmprank",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
