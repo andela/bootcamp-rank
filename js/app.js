@@ -38,7 +38,7 @@
   window.app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
       // For any unmatched url, redirect to /state1
-      $urlRouterProvider.otherwise('/404');
+      $urlRouterProvider.otherwise('/');
 
       $stateProvider
         .state('login', {
@@ -56,10 +56,10 @@
           controller: 'DashboardCtrl',
           templateUrl: 'views/dashboard.html'
         })
-        .state('bootcamper', {
-          url: '/bootcamper',
-          controller: 'BootcamperCtrl',
-          templateUrl: 'views/bootcamper.html'
+        .state('projects', {
+          url: '/project/submit',
+          controller: 'ProjectCtrl',
+          templateUrl: 'views/project.html'
         })
         .state('404', {
           url: '/404',

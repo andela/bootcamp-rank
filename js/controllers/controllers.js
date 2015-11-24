@@ -103,6 +103,20 @@ angular.module('bootrank.controllers', [])
       title: 'Quiz App'
     }];
   }])
-  .controller('BootcamperCtrl', ['$scope', function($scope) {
+  .controller('ProjectCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils', function($scope, $rootScope, $state, Auth, Utils) {
+    if ($rootScope.user) {
+      $scope.submit = false;
+      $scope.edit = true;
 
+      $scope.submitProject = function() {
+        $scope.submit = true;
+
+        var ref = Auth.firebase;
+        ref.child('bootcamps').child('bc4').push($scope.submission);
+        Utils.toast('You project has been submitted');
+        $scope.edit = false;
+      };
+    } else {
+      $state.go('login');
+    }
   }]);

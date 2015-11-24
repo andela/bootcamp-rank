@@ -1,4 +1,9 @@
-.body {}
+.body {
+  font-family: "Roboto", "Open Sans", "Arial", "Verdana", sans-serif;
+  font-size: 1em;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
 
 
 /*material icons*/
