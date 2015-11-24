@@ -96,3 +96,8 @@ md-content {
 .project {
   width: 90%;
 }
+
+.register-project {
+  max-width: 1000px;
+  margin: 0 auto;
+}

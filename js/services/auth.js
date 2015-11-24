@@ -5,6 +5,7 @@
     .factory('Auth', ['$firebaseObject', '$firebaseArray', '$q', '$window', function($firebaseObject, $firebaseArray, $q, $window) {
       var app = new Firebase('https://btcmprank.firebaseio.com');
       return {
+        firebase: app,
         login: function() {
           return $q(function(resolve, reject) {
             var isNewUser = true;
@@ -40,7 +41,7 @@
         },
 
         logout: function() {
-          $window.localStorage.removeItem('firebase:session::btcmprank');
+          app.unauth();
         }
       };
     }])
