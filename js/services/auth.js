@@ -31,7 +31,9 @@
             }
           });
         },
-
+        getProjects(cb) {      
+          return cb($firebaseArray(app.child('bootcamps').child('bc4')));
+        },
         get: function() {
           return $firebaseArray(app);
         },

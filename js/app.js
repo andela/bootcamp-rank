@@ -38,7 +38,7 @@
   window.app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
       // For any unmatched url, redirect to /state1
-      $urlRouterProvider.otherwise('/404');
+      $urlRouterProvider.otherwise('/');
 
       $stateProvider
         .state('login', {
