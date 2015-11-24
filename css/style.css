@@ -28,6 +28,22 @@
   font-feature-settings: 'liga';
 }
 
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
 .home {
   background: url(../images/home.jpg) center center no-repeat;
   background-size: cover;
@@ -64,15 +80,6 @@ md-content {
   height: 100vh;
 }
 
-.projects {
-  height: 100%;
-  background-color: #00f;
-}
-
-.details {
-  height: 100%;
-}
-
 .user-image {
   float: left;
   width: 50px;
@@ -84,4 +91,8 @@ md-content {
 
 .md-icon-button {
   background-color: rgb(63, 81, 181);
+}
+
+.project {
+  width: 90%;
 }

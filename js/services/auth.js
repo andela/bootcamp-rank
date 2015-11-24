@@ -1,10 +1,9 @@
 (function() {
   'use strict';
   angular
-    .module('btcmprank.services', [])
+    .module('bootrank.services', [])
     .factory('Auth', ['$firebaseObject', '$firebaseArray', '$q', '$window', function($firebaseObject, $firebaseArray, $q, $window) {
       var app = new Firebase('https://btcmprank.firebaseio.com');
-
       return {
         login: function() {
           return $q(function(resolve, reject) {
@@ -32,8 +31,8 @@
           });
         },
 
-        addUser: function(id) {
-          return $firebaseArray(app.child('users').child(id));
+        get: function() {
+          return $firebaseArray(app);
         },
 
         getUser: function() {
@@ -44,5 +43,26 @@
           $window.localStorage.removeItem('firebase:session::btcmprank');
         }
       };
-    }]);
+    }])
+    .service('Utils', function($mdToast, $mdDialog) {
+      this.toast = function(msg) {
+        $mdToast.show($mdToast.simple().content(msg));
+      };
+      this.dialog = function(title, message, event, callback) {
+        $mdDialog.show(
+            $mdDialog.confirm()
+            .parent(angular.element(document.body))
+            .clickOutsideToClose(true)
+            .title(title)
+            .content(message)
+            .ariaLabel('Utils Dialog Service')
+            .ok('OK')
+            .cancel('CANCEL')
+            .targetEvent(event)
+          )
+          .then(function() {
+            callback();
+          }, function() {});
+      };
+    });
 })();

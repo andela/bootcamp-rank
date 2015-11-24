@@ -1,8 +1,28 @@
-<md-content layout="row">
-  <div flex="15" class="projects">
-  
-  </div>
-  <div flex="85" class="details">
-    
-  </div>
-</md-content>
+<div layout="column" style="height:900px;" ng-cloak>
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" class="projects">
+      <md-content layout-padding>
+        <p ng-repeat=" project in projects">
+          <md-button class="md-raised md-warn project"> {{project.title}}</md-button>
+        </p>
+      </md-content>
+    </md-sidenav>
+    <md-content flex layout-padding>
+      <div layout="column" layout-fill layout-align="top center">
+        <md-card>
+          <md-card-content>
+            <h2 class="md-title">Paracosm</h2>
+            <p>
+              The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+            </p>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button>Action 1</md-button>
+            <md-button>Action 2</md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+      <div flex></div>
+    </md-content>
+  </section>
+</div>

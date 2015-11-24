@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   window.app = angular.module('bootrank', [
-    'btcmprank.services',
+    'bootrank.services',
     'bootrank.controllers',
     'ui.router',
     'ngMaterial',
@@ -30,8 +30,8 @@
           templateUrl: 'views/login.html'
         })
         .state('home', {
-          url: '/home',
-          controller: 'LoginCtrl',
+          url: '/home/{id}',
+          controller: 'HomeCtrl',
           templateUrl: 'views/home.html'
         })
         .state('404', {
