@@ -8,8 +8,15 @@
     'firebase'
   ]);
 
-  window.app.run(['$rootScope', '$location', '$state', '$mdSidenav',
-    function($rootScope, $location, $state, $mdSidenav) {}
+  window.app.run(['$rootScope', '$location', '$state', 'Auth',
+    function($rootScope, $location, $state, Auth) {
+      if (Auth.getUser()) {
+        var user = JSON.parse(Auth.getUser());
+        user = user.google.cachedUserProfile;
+        $rootScope.user = user;
+        console.log($rootScope.user);
+      }
+    }
   ]);
 
   window.app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',

@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('btcmprank.services', [])
-    .factory('Auth', ['$firebaseObject', '$firebaseArray', '$q', function($firebaseObject, $firebaseArray, $q) {
+    .factory('Auth', ['$firebaseObject', '$firebaseArray', '$q', '$window', function($firebaseObject, $firebaseArray, $q, $window) {
       var app = new Firebase('https://btcmprank.firebaseio.com');
 
       return {
@@ -16,7 +16,6 @@
                 resolve(authData);
               }
             }, {
-              remember: 'sessionOnly',
               scope: 'email'
             });
           });
@@ -35,6 +34,10 @@
 
         addUser: function(id) {
           return $firebaseArray(app.child('users').child(id));
+        },
+
+        getUser: function() {
+          return $window.localStorage.getItem('firebase:session::btcmprank');
         }
       };
     }]);
