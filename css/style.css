@@ -50,7 +50,7 @@
 }
 
 .home {
-  background: url(../images/home.jpg) center center no-repeat;
+  background: url(../images/rate.jpg) center center no-repeat;
   background-size: cover;
   text-align: center;
   height: 93vh;
@@ -105,4 +105,8 @@ md-content {
 .register-project {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.projects {
+  background: green;
 }

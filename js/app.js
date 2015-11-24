@@ -47,7 +47,7 @@
           templateUrl: 'views/login.html'
         })
         .state('home', {
-          url: '/home/',
+          url: '/home',
           controller: 'HomeCtrl',
           templateUrl: 'views/home.html'
         })
