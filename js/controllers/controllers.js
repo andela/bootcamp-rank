@@ -39,24 +39,28 @@ angular.module('bootrank.controllers', [])
       };
     }
   ])
-  .controller('HomeCtrl', ['$scope',
-      function($scope) {
-        $scope.projects = [{
-          id: '56545be6d2466a0e50c9e20b',
-          title: 'Blog Application',
-          bootcamper: 'John Doe', 
-          description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        }, {
-          id: '56545be644251795b3c9604d',
-          title: 'Complex Numbers Spec',
-          bootcamper: 'John Doe'
-        }, {
-          id: '56545be6d9c28cd18034d65d',
-          title: 'Sets Theory Spec',
-          bootcamper: 'John Doe'
-        }];
+  .controller('HomeCtrl', ['$scope','$rootScope','Auth',
+      function($scope, $rootScope,Auth) {
+        
+        Auth.getProjects(function (projects) {
+          $scope.projects = projects;
+          console.log($scope.projects);
+        });
 
-        $scope.currentProject = $scope.projects[0];
+        $scope.showRating = false;
+
+        $scope.changeCurrentProject = function (project) {
+          $scope.currentProject = project;
+          $scope.showRating = true;
+        }
+
+        $scope.submitRating = function (rating) {
+          var score = $scope.currentProject;
+          score.scorer_name = $rootScope.user.name;
+          score.scorer_id = $rootScope.user.id;
+          score.score = rating;
+          console.log(score);
+        }
       }])
     .controller('DashboardCtrl', ['$scope',
       function($scope) {

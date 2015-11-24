@@ -1,56 +1,67 @@
 <div layout="column" style="height:900px;" ng-cloak>
   <section layout="row" flex>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" class="projects">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" class="projects">    
     <md-list>
-    <md-list-item class="md-2-line" ng-repeat="project in projects" ng-click="">
-    <div class="md-list-item-text" layout="column">
-      <h3>{{ project.title }}</h3>
-      <h4>{{ project.bootcamper }}</h4>
-    </div>
-    <md-divider ></md-divider>
-    </md-list-item>
+      <md-subheader class="md-no-sticky">
+        Bottcamp projects
+        <md-input-container>
+          <label>Search</label>
+          <textarea ng-model="search"></textarea>
+        </md-input-container>
+      </md-subheader>
+      
+      <md-list-item class="md-2-line" ng-repeat="project in projects | filter:search" ng-click="changeCurrentProject(project)">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{ project.project }}</h3>
+        <h4>{{ project.name }}</h4>
+      </div>
+      </md-list-item>
     </md-list>
     </md-sidenav>
     <md-content flex layout-padding>
-    <div layout="column" layout-fill layout-align="top center" layout-padding layout-margin>
-      <span class="md-title">{{currentProject.title}}</span> <small>{{currentProject.bootcamper}}</small>
+    <div ng-hide="showRating" >
+      <h2>Select a project to view its details</h2>
+    </div>
+    <div layout="column" layout-fill layout-align="top center" layout-padding layout-margin ng-show="showRating">
+      <span class="md-title">{{currentProject.project}}</span> <small>{{currentProject.name}}</small>
       <p>
         {{currentProject.description}}
       </p>
       <br/>
-      <h2 class="md-title">Add Rating (1:- Not Done Well - 10: Excellent Work)</h2>
+      <h2 class="md-title">Add Rating <small> (Add your rating by sliding the slider below: 1:Not Done Well - 10: Excellent Work)</small></h2>
+
       <div class="rating" layout-fill>
         <div layout="row">
           <div flex="20">
             Project Quality:
           </div>
-          <md-slider flex="80" md-discrete ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
+          <md-slider flex="80" md-accent ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
         </div>
         <div layout="row">
           <div flex="20">
             User Interface/Experience:
           </div>
-          <md-slider flex="80" md-discrete ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
+          <md-slider flex="80" md-warn ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
         </div>
         <div layout="row">
           <div flex="20">
             Confidence:
           </div>
-          <md-slider flex="80" md-discrete ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
+          <md-slider flex="80" md-hue ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
         </div>
         <div layout="row">
           <div flex="20">
             Project Understanding:
           </div>
-          <md-slider flex="80" md-discrete ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
+          <md-slider flex="80" md-primary ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
         </div>
         <md-input-container>
           <label>Comment</label>
-          <textarea ng-model="rating.comment"></textarea>
+          <textarea ng-model="rating.comment" class="md-warn"></textarea>
         </md-input-container>
         <div layout="row">
           <span flex></span>
-          <md-button class="md-raised md-primary">Submit</md-button>
+          <md-button class="md-raised md-primary" ng-click="submitRating(rating)" >Submit</md-button>
         </div>
       </div>
     </div>
