@@ -1,0 +1,103 @@
+.body {}
+
+
+/*material icons*/
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.home {
+  background: url(../images/home.jpg) center center no-repeat;
+  background-size: cover;
+  text-align: center;
+  height: 93vh;
+  margin: 0 0px;
+  text-align: center;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.home p {
+  margin-top: 200px;
+  font-size: 3.5em;
+  color: orange;
+  text-shadow: 0 0 4px #333;
+  display: inline-block;
+  margin-bottom: 0px
+}
+
+.home .jumbotron-middle-small-text {
+  font-size: 1.7em;
+  display: block;
+  margin-top: 0px;
+}
+
+.login {
+  padding-top: 10px;
+  width: 300px;
+}
+
+md-content {
+  height: 100vh;
+}
+
+.user-image {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: -2px;
+}
+
+.md-icon-button {
+  background-color: rgb(63, 81, 181);
+}
+
+.project {
+  width: 90%;
+}
+
+.register-project {
+  max-width: 1000px;
+  margin: 0 auto;
+}
