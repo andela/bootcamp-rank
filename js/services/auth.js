@@ -42,7 +42,6 @@
 
         logout: function() {
           $window.localStorage.removeItem('firebase:session::btcmprank');
-          $window.location = '/';
         }
       };
     }]);
