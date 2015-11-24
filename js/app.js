@@ -14,7 +14,6 @@
         var user = JSON.parse(Auth.getUser());
         user = user.google.cachedUserProfile;
         $rootScope.user = user;
-        console.log($rootScope.user);
       }
     }
   ]);
@@ -29,6 +28,11 @@
           url: '/',
           controller: 'LoginCtrl',
           templateUrl: 'views/login.html'
+        })
+        .state('home', {
+          url: '/home',
+          controller: 'LoginCtrl',
+          templateUrl: 'views/home.html'
         })
         .state('404', {
           url: '/404',

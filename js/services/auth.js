@@ -38,6 +38,11 @@
 
         getUser: function() {
           return $window.localStorage.getItem('firebase:session::btcmprank');
+        },
+
+        logout: function() {
+          $window.localStorage.removeItem('firebase:session::btcmprank');
+          $window.location = '/';
         }
       };
     }]);

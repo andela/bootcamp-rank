@@ -10,7 +10,7 @@
 </head>
 
 <body layout="column">
-  <md-toolbar ng-controller="LoginCtrl">
+  <md-toolbar ng-controller="LoginCtrl as ctrl">
     <div class="md-toolbar-tools">
       <md-button class="md-icon-button" aria-label="Settings">
         <i class="material-icons"> menu</i>
@@ -22,9 +22,19 @@
       <md-button aria-label="Favorite" ng-if="user">
         {{user.name}}
       </md-button>
-      <md-button aria-label="More" ng-if="user">
-        <img ng-src="{{user.picture}}" class="md-avatar user-image" alt="{{item.who}}" style="background-image: url('{{user.picture}})" />
-      </md-button>
+      <md-menu>
+        <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+          <img ng-src="{{user.picture}}" class="md-avatar user-image" alt="{{item.who}}" style="background-image: url('{{user.picture}})" />
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="ctrl.logout()">
+              <i class="material-icons"> lock_open</i> Logout
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <span flex="1"></span>
     </div>
   </md-toolbar>
   <md-content ui-view>
