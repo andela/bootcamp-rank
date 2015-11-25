@@ -34,10 +34,14 @@
     }
   ]);
 
-  window.app.config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+  window.app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
+    function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
       // For any unmatched url, redirect to /state1
       $urlRouterProvider.otherwise('/');
+      $mdThemingProvider.theme('default')
+        .backgroundPalette('grey', {
+          default: '200'
+        });
 
       $stateProvider
         .state('login', {

@@ -102,7 +102,9 @@ angular.module('bootrank.controllers', [])
       $scope.submitProject = function(event) {
         Utils.dialog('project submission', 'Are you sure of your details?, Ensure that all the infomation is accurate', event, function() {
           $scope.submission.picture = $rootScope.user.picture;
+          $scope.submission.name = $rootScope.user.name;
           ref.child('bootcamps').child('bc4').push($scope.submission);
+          $scope.submission = null;
           Utils.toast('You project has been submitted');
         });
 
