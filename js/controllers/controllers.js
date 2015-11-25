@@ -176,5 +176,6 @@ angular.module('bootrank.controllers', [])
 
     $scope.cancel = function() {
       $mdDialog.hide();
+      $mdBottomSheet.hide();
     };
   }]);

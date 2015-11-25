@@ -1,5 +1,5 @@
 {
-  "firebase": "btcmprank",
+  "firebase": "boot-rank",
   "public": "/",
   "ignore": [
     "firebase.json",
