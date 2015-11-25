@@ -1,6 +1,6 @@
 angular.module('bootrank.controllers', [])
-  .controller('LoginCtrl', ['$scope', 'Auth', '$rootScope', 'Utils', '$state',
-    function($scope, Auth, $rootScope, Utils, $state) {
+  .controller('LoginCtrl', ['$scope', 'Auth', '$rootScope', '$mdBottomSheet', 'Utils', '$state',
+    function($scope, Auth, $rootScope, $mdBottomSheet, Utils, $state) {
       $scope.login = function() {
         Auth.login().then(function(authData) {
           var data = authData.google.cachedUserProfile;
@@ -18,21 +18,45 @@ angular.module('bootrank.controllers', [])
               $state.go('home');
             }
           } else {
-            Utils.toast('Unauthorized acces, Login in with andela email');
-            Auth.logout();
-            $state.go('login');
+            ref.child('bootcampers').child('invite').on('value', function(snapshot) {
+              var emails = snapshot.val();
+              var invited = false;
+              console.log(data.email);
+              for (var i = 0; i < emails.length; i++) {
+                console.log(data.email.trim(), ':', emails[i].trim());
+                if (data.email.trim() === emails[i].trim()) {
+                  $rootScope.user = data;
+                  invited = true;
+                  $state.go('projects');
+                  break;
+                }
+              }
+              if (!invited) {
+                Utils.toast('Unauthorized acces, Login in with andela email ');
+                Auth.logout();
+                $state.go('login');
+              }
+            });
           }
-
         });
+
+        $scope.logout = function() {
+          Auth.logout();
+          $state.go('login');
+        };
       };
 
-      var originatorEv;
-
-      this.openMenu = function($mdOpenMenu, ev) {
-        originatorEv = ev;
-        $mdOpenMenu(ev);
+      $scope.showSheet = function($event) {
+        $scope.alert = '';
+        $mdBottomSheet.show({
+          templateUrl: 'views/bottom-sheet.html',
+          controller: 'LoginCtrl',
+          clickOutsideToClose: false,
+          targetEvent: $event
+        }).then(function() {});
       };
-      this.logout = function() {
+      $scope.logout = function() {
+        $mdBottomSheet.hide();
         Auth.logout();
         $state.go('login');
         $rootScope.user = null;
@@ -79,6 +103,7 @@ angular.module('bootrank.controllers', [])
       var ref = Auth.firebase;
       $scope.submitProject = function(event) {
         Utils.dialog('project submission', 'Are you sure of your details?, Ensure that all the infomation is accurate', event, function() {
+          $scope.submission.picture = $rootScope.user.picture;
           ref.child('bootcamps').child('bc4').push($scope.submission);
           Utils.toast('You project has been submitted');
         });
@@ -87,5 +112,47 @@ angular.module('bootrank.controllers', [])
     } else {
       $state.go('login');
     }
+  }]).controller('DialogCtrl', ['$scope', 'Auth', '$rootScope', '$mdBottomSheet', '$mdDialog', 'Utils', '$state',
+    function($scope, Auth, $rootScope, $mdBottomSheet, $mdDialog, Utils, $state) {
+      $scope.showSheet = function($event) {
+        $scope.alert = '';
+        $mdBottomSheet.show({
+          templateUrl: 'views/bottom-sheet.html',
+          controller: 'DialogCtrl',
+          clickOutsideToClose: false,
+          targetEvent: $event
+        }).then(function() {});
+      };
+      $scope.logout = function() {
+        $mdBottomSheet.hide();
+        Auth.logout();
+        $state.go('login');
+        $rootScope.user = null;
+      };
 
+      $scope.showInvite = function(ev) {
+        $mdDialog.show({
+            controller: 'DialogCtrl',
+            templateUrl: 'views/invite-dialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+          })
+          .then(function() {});
+      };
+    }
+  ])
+  .controller('InviteCtrl', ['$scope', 'Auth', '$mdDialog', '$mdBottomSheet', 'Utils', function($scope, Auth, $mdDialog, $mdBottomSheet, Utils) {
+    $scope.tags = [];
+    var ref = Auth.firebase;
+    $scope.addBootcamper = function() {
+      if ($scope.tags.length !== 15) {
+        Utils.dialog('Warning', 'You have entered less emails than required, ensure that they are 15 in number', event, function() {});
+      } else {
+        ref.child('bootcampers').child('invite').set($scope.tags);
+        $mdDialog.hide();
+        $mdBottomSheet.hide();
+        Utils.toast('Invites have been added');
+      }
+    };
   }]);

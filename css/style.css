@@ -110,3 +110,7 @@ md-content {
 .projects {
   background: green;
 }
+
+.invite {
+  width: 800px;
+}
