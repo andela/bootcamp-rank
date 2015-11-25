@@ -64,7 +64,7 @@
 .home p {
   margin-top: 200px;
   font-size: 3.5em;
-  color: orange;
+  color: white;
   text-shadow: 0 0 4px #333;
   display: inline-block;
   margin-bottom: 0px
@@ -78,7 +78,7 @@
 
 .login {
   padding-top: 10px;
-  width: 300px;
+  width: 100%;
 }
 
 md-content {

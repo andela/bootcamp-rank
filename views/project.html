@@ -2,7 +2,7 @@
   <md-card layout="column" layout-md="column" layout-sm="column">
     <md-card-content class="content">
       <md-subheader class="md-no-sticky">
-        <h2>Below is the project submission form , ensure that you fill all the field</h2>
+        <p\>Below is the project submission form , ensure that you fill all the fields, read through your submission carefully before you submit your project</p\>
         <h2>{{message}}</h2>
       </md-subheader>
     </md-card-content>
@@ -21,11 +21,10 @@
           </textarea>
         </md-input-container>
         <md-input-container><i class="material-icons">  description</i>
-          <textarea placeholder="project description" ng-model="submission.description" type="text" ng-required="true" rows="3" aria-label="submission.description"></textarea>
+          <textarea placeholder="Describe your project" ng-model="submission.description" type="text" ng-required="true" rows="3" aria-label="submission.description"></textarea>
         </md-input-container>
         <br/>
-        <md-button type="submit" class="md-raised md-warn login-button" ng-disabled="{{submit}}">Submit</md-button>
-        <md-button type="submit" class="md-raised md-warn login-button" ng-disabled="{{edit}}">Edit</md-button>
+        <md-button type="submit" class="md-raised md-warn login-button">Submit</md-button>
       </form>
     </md-card-content>
   </md-card>

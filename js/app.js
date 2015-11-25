@@ -15,6 +15,7 @@
         var user = JSON.parse(Auth.getUser());
         user = user.google.cachedUserProfile;
         $rootScope.user = user;
+        $state.go('home');
       } else {
         $state.go('login');
       }
@@ -24,9 +25,7 @@
           if (/andela.co(m?)/.test(authData.google.cachedUserProfile.id)) {
             $rootScope.user = authData.google.cachedUserProfile;
             console.log(authData.google.cachedUserProfile);
-            $state.go('home', {
-              id: $rootScope.user.id
-            });
+            $state.go('home');
           } else {
             $state.go('login');
           }
@@ -52,7 +51,7 @@
           templateUrl: 'views/home.html'
         })
         .state('dashboard', {
-          url: '/dashboard/:id',
+          url: '/dashboard',
           controller: 'DashboardCtrl',
           templateUrl: 'views/dashboard.html'
         })
