@@ -3,7 +3,7 @@
   angular
     .module('bootrank.services', [])
     .factory('Auth', ['$firebaseObject', '$firebaseArray', '$q', '$window', function($firebaseObject, $firebaseArray, $q, $window) {
-      var app = new Firebase('https://btcmprank.firebaseio.com');
+      var app = new Firebase('https://boot-rank.firebaseio.com');
       return {
         firebase: app,
         login: function() {
