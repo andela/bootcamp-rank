@@ -18,11 +18,32 @@ angular.module('bootrank.controllers', [])
               $state.go('home');
             }
           } else {
-            Utils.toast('Unauthorized acces, Login in with andela email');
-            Auth.logout();
-            $state.go('login');
+            ref.child('bootcampers').child('invite').on('value', function(snapshot) {
+              var emails = snapshot.val();
+              var invited = false;
+              console.log(data.email);
+              for (var i = 0; i < emails.length; i++) {
+                console.log(data.email.trim(), ':', emails[i].trim());
+                if (data.email.trim() === emails[i].trim()) {
+                  $rootScope.user = data;
+                  invited = true;
+                  $state.go('projects');
+                  break;
+                }
+              }
+              if (!invited) {
+                Utils.toast('Unauthorized acces, Login in with andela email ');
+                Auth.logout();
+                $state.go('login');
+              }
+            });
           }
         });
+
+        $scope.logout = function() {
+          Auth.logout();
+          $state.go('login');
+        };
       };
 
       $scope.showSheet = function($event) {
@@ -82,6 +103,7 @@ angular.module('bootrank.controllers', [])
       var ref = Auth.firebase;
       $scope.submitProject = function(event) {
         Utils.dialog('project submission', 'Are you sure of your details?, Ensure that all the infomation is accurate', event, function() {
+          $scope.submission.picture = $rootScope.user.picture;
           ref.child('bootcamps').child('bc4').push($scope.submission);
           Utils.toast('You project has been submitted');
         });
@@ -132,6 +154,5 @@ angular.module('bootrank.controllers', [])
         $mdBottomSheet.hide();
         Utils.toast('Invites have been added');
       }
-
     };
   }]);
