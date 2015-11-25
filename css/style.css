@@ -50,7 +50,7 @@
 }
 
 .home {
-  background: url(../images/home.jpg) center center no-repeat;
+  background: url(../images/rate.jpg) center center no-repeat;
   background-size: cover;
   text-align: center;
   height: 93vh;
@@ -64,7 +64,7 @@
 .home p {
   margin-top: 200px;
   font-size: 3.5em;
-  color: orange;
+  color: white;
   text-shadow: 0 0 4px #333;
   display: inline-block;
   margin-bottom: 0px
@@ -78,7 +78,7 @@
 
 .login {
   padding-top: 10px;
-  width: 300px;
+  width: 100%;
 }
 
 md-content {
@@ -105,4 +105,8 @@ md-content {
 .register-project {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.projects {
+  background: green;
 }
