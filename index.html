@@ -27,7 +27,7 @@
       <md-button aria-label="user.picture" class="md-icon-button" ng-if="user">
         <img ng-src="{{user.picture}}" class="md-avatar user-image" alt="{{item.who}}" style="background-image: url('{{user.picture}})" />
       </md-button>
-      <md-button aria-label="Favorite" ng-if="user">
+      <md-button aria-label="Favorite" ng-if="user" ng-click="showSheet($event)">
         <i class="material-icons">menu</i>
         <md-tooltip md-direction="down">
           Menu
