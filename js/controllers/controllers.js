@@ -146,13 +146,18 @@ angular.module('bootrank.controllers', [])
     $scope.tags = [];
     var ref = Auth.firebase;
     $scope.addBootcamper = function() {
-      if ($scope.tags.length !== 15) {
-        Utils.dialog('Warning', 'You have entered less emails than required, ensure that they are 15 in number', event, function() {});
-      } else {
-        ref.child('bootcampers').child('invite').set($scope.tags);
+      ref.child('bootcampers').child('invite').once('value', function(snap) {
+        var bootcampers = snap.val();
+        if (!Array.isArray(bootcampers)) {
+          bootcampers = $scope.tags;
+        } else {
+          bootcampers = bootcampers.concat($scope.tags);
+        }
+        ref.child('bootcampers').child('invite').set(bootcampers);
         $mdDialog.hide();
         $mdBottomSheet.hide();
         Utils.toast('Invites have been added');
-      }
+      });
+
     };
   }]);
