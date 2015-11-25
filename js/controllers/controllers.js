@@ -21,9 +21,7 @@ angular.module('bootrank.controllers', [])
             ref.child('bootcampers').child('invite').on('value', function(snapshot) {
               var emails = snapshot.val();
               var invited = false;
-              console.log(data.email);
               for (var i = 0; i < emails.length; i++) {
-                console.log(data.email.trim(), ':', emails[i].trim());
                 if (data.email.trim() === emails[i].trim()) {
                   $rootScope.user = data;
                   invited = true;
