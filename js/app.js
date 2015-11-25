@@ -16,6 +16,7 @@
         user = user.google.cachedUserProfile;
         $rootScope.user = user;
         $state.go('home');
+
       } else {
         $state.go('login');
       }

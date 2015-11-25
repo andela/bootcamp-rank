@@ -1,6 +1,10 @@
 angular.module('bootrank.controllers', [])
   .controller('LoginCtrl', ['$scope', 'Auth', '$rootScope', '$mdBottomSheet', 'Utils', '$state',
     function($scope, Auth, $rootScope, $mdBottomSheet, Utils, $state) {
+      if ($rootScope.user) {
+        $state.go('home');
+      }
+
       $scope.login = function() {
         Auth.login().then(function(authData) {
           var data = authData.google.cachedUserProfile;
@@ -61,8 +65,13 @@ angular.module('bootrank.controllers', [])
       };
     }
   ])
-  .controller('HomeCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils',
-    function($scope, $rootScope, $state, Auth, Utils) {
+  .controller('HomeCtrl', ['$scope', '$rootScope', '$state', '$mdSidenav', 'Auth', 'Utils',
+    function($scope, $rootScope, $state, $mdSidenav, Auth, Utils) {
+
+      // side nav
+      $rootScope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
 
       Auth.getProjects(function(projects) {
         $scope.projects = projects;
@@ -70,6 +79,7 @@ angular.module('bootrank.controllers', [])
 
       $scope.showRating = false;
       $scope.changeCurrentProject = function(project) {
+        $mdSidenav('left').close();
         $scope.currentProject = project;
         $scope.showRating = true;
       };
@@ -146,18 +156,25 @@ angular.module('bootrank.controllers', [])
     $scope.tags = [];
     var ref = Auth.firebase;
     $scope.addBootcamper = function() {
-      ref.child('bootcampers').child('invite').once('value', function(snap) {
-        var bootcampers = snap.val();
-        if (!Array.isArray(bootcampers)) {
-          bootcampers = $scope.tags;
-        } else {
-          bootcampers = bootcampers.concat($scope.tags);
-        }
-        ref.child('bootcampers').child('invite').set(bootcampers);
-        $mdDialog.hide();
-        $mdBottomSheet.hide();
-        Utils.toast('Invites have been added');
-      });
+      if ($scope.tags !== []) {
+        ref.child('bootcampers').child('invite').once('value', function(snap) {
+          var bootcampers = snap.val();
+          if (!Array.isArray(bootcampers)) {
+            bootcampers = $scope.tags;
+          } else {
+            bootcampers = bootcampers.concat($scope.tags);
+          }
+          ref.child('bootcampers').child('invite').set(bootcampers);
+          $mdDialog.hide();
+          $mdBottomSheet.hide();
 
+        });
+      } else {
+        Utils.toast('You have not entered any email');
+      }
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.hide();
     };
   }]);

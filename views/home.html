@@ -44,33 +44,33 @@
           <h2 class="md-title">Add Rating <small> Rating Metric, provid honest opinion</small></h2>
           <hr>
           <div class="rating">
-            <div layout="row">
-              <div flex="20">
+            <div layout="column">
+              <div flex="2">
                 Project Quality:
               </div>
-              <md-slider flex="80" md-discrete md-accent ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
+              <md-slider flex="5" md-discrete md-accent ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
-            <div layout="row">
-              <div flex="20">
+            <div layout="column">
+              <div flex="2">
                 User Interface/Experience:
               </div>
-              <md-slider flex="80" md-discrete md-warn ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
+              <md-slider flex="5" md-discrete md-warn ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
-            <div layout="row">
-              <div flex="20">
+            <div layout="column">
+              <div flex="2">
                 Confidence:
               </div>
-              <md-slider flex="80" md-discrete md-hue ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
+              <md-slider flex="5" md-discrete md-hue ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
-            <div layout="row">
-              <div flex="20">
+            <div layout="column">
+              <div flex="2">
                 Project Understanding:
               </div>
-              <md-slider flex="80" md-discrete md-primary ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
+              <md-slider flex="5" md-discrete md-primary ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
             <md-input-container>
               <label>Comment</label>
-              <textarea ng-model="rating.comment" rows="5"></textarea>
+              <textarea ng-model="rating.comment" columns="5"></textarea>
             </md-input-container>
             <div layout="row">
               <span flex></span>

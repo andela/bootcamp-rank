@@ -39,7 +39,7 @@
         },
 
         getUser: function() {
-          return $window.localStorage.getItem('firebase:session::btcmprank');
+          return $window.localStorage.getItem('firebase:session::boot-rank');
         },
 
         logout: function() {
