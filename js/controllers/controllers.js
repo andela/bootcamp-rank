@@ -4,7 +4,6 @@ angular.module('bootrank.controllers', [])
       if ($rootScope.user) {
         $state.go('home');
       }
-
       $scope.login = function() {
         Auth.login().then(function(authData) {
           var data = authData.google.cachedUserProfile;
@@ -76,12 +75,16 @@ angular.module('bootrank.controllers', [])
       Auth.getProjects(function(projects) {
         $scope.projects = projects;
       });
-
       $scope.showRating = false;
       $scope.changeCurrentProject = function(project) {
         $mdSidenav('left').close();
         $scope.currentProject = project;
         $scope.showRating = true;
+        $scope.rating.quality = 0;
+        $scope.rating.uiux = 0;
+        $scope.rating.understanding = 0;
+        $scope.rating.confidence = 0;
+        $scope.rating.comment = null;
       };
       $scope.submitRating = function() {
         var score = $scope.currentProject;

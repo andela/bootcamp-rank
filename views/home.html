@@ -1,4 +1,4 @@
-<div layout="column" style="height:1000px;">
+<div layout="column" style="height:900px;" ng-cloak>
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
       <md-list>
@@ -26,6 +26,7 @@
         <md-card-content>
           <md-subheader class="md-no-sticky">
             <h2>Scoreboard</h2>
+            <p>Click on the left side nav to rate project, you can only rate project once</p>
           </md-subheader>
           <hr>
           <div ng-show="showRating">
@@ -39,36 +40,36 @@
         <br/>
       </md-card>
       <md-card>
-        <img ng-src="images/rate.jpg" class="md-card-image" alt="Washed Out" ng-hide="showRating">
         <md-card-content ng-show="showRating">
           <h2 class="md-title">Add Rating <small> Rating Metric, provid honest opinion</small></h2>
           <hr>
           <div class="rating">
             <div layout="column">
               <div flex="2">
-                Project Quality:
+                <i class="fa fa-certificate "></i> Project Quality:
               </div>
               <md-slider flex="5" md-discrete md-accent ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
             <div layout="column">
               <div flex="2">
-                User Interface/Experience:
+                <i class="material-icons">important_devices   </i> User Interface/Experience:
               </div>
               <md-slider flex="5" md-discrete md-warn ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
             <div layout="column">
               <div flex="2">
-                Confidence:
+                <i class="material-icons">accessibility</i> Confidence:
               </div>
               <md-slider flex="5" md-discrete md-hue ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
             <div layout="column">
               <div flex="2">
-                Project Understanding:
+                <i class="fa fa-ship "></i> Project Understanding:
               </div>
               <md-slider flex="5" md-discrete md-primary ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
             </div>
             <md-input-container>
+              <i class="material-icons">comment</i>
               <label>Comment</label>
               <textarea ng-model="rating.comment" columns="5"></textarea>
             </md-input-container>
