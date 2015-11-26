@@ -14,7 +14,12 @@
       <form ng-submit="submitProject($event)">
         <md-input-container><i class="material-icons">  info</i>
           <input placeholder="project Name" ng-model="submission.project" type="text" ng-required="true" rows="5" aria-label="submission.description">
-          </textarea>
+        </md-input-container>
+        <md-input-container><i class="material-icons">  info</i>
+          <input placeholder="Github repository" ng-model="submission.repository" type="text" ng-required="true" rows="5" aria-label="submission.repository">
+        </md-input-container>
+        <md-input-container><i class="material-icons">  info</i>
+          <input placeholder="Live project demo" ng-model="submission.demo" type="text" ng-required="true" rows="5" aria-label="submission.demo">
         </md-input-container>
         <md-input-container><i class="material-icons">  description</i>
           <textarea placeholder="Describe your project" ng-model="submission.description" type="text" ng-required="true" rows="3" aria-label="submission.description"></textarea>
