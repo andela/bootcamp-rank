@@ -8,6 +8,10 @@
 
 /*material icons*/
 
+.inline {
+  display: inline;
+}
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -112,7 +116,7 @@ md-content {
 }
 
 .invite {
-  width: 800px;
+  max-width: 800px;
 }
 
 .bottom-sheet {
