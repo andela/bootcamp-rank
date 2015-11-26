@@ -75,10 +75,6 @@ angular.module('bootrank.controllers', [])
   ])
   .controller('HomeCtrl', ['$scope', '$rootScope', '$state', '$mdSidenav', 'Auth', 'Utils',
     function($scope, $rootScope, $state, $mdSidenav, Auth, Utils) {
-      if (!$rootScope.user) {
-        $state.go('login');
-      }
-
       Auth.getProjects(function(projects) {
         $scope.projects = projects;
         console.log(projects);
@@ -145,7 +141,7 @@ angular.module('bootrank.controllers', [])
             function() {
               $scope.submission.picture = $rootScope.user.picture;
               $scope.submission.name = $rootScope.user.name;
-              ref.child('bootcamps').child('bc4').push($scope.submission);
+              ref.child('bootcamps').child('bc4').child($rootScope.user.id).set($scope.submission);
               $scope.submission = null;
               Utils.toast('You project has been submitted');
             });
