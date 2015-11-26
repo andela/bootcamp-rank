@@ -4,7 +4,7 @@
     .module('bootrank.services', [])
     .factory('Auth', ['$firebaseObject', '$firebaseArray', '$q', '$window',
       function($firebaseObject, $firebaseArray, $q, $window) {
-        var app = new window.Firebase('https://boot-rank.firebaseio.com');
+        var app = new $window.Firebase('https://boot-rank.firebaseio.com');
         return {
           firebase: app,
           login: function() {

@@ -10,15 +10,12 @@
 
   window.app.run(['$rootScope', '$location', '$state', 'Auth',
     function($rootScope, $location, $state, Auth) {
-
       // check if the user loggied in
       Auth.firebase.onAuth(function(authData) {
         if (authData && authData.google) {
           $rootScope.user = authData.google.cachedUserProfile;
-          console.log(authData.google.cachedUserProfile);
           return $state.go('home');
         }
-
         $state.go('login');
       });
     }
@@ -58,7 +55,6 @@
           url: '/404',
           templateUrl: 'views/404.html'
         });
-      // $locationProvider.html5Mode(true);
     }
   ]);
 
