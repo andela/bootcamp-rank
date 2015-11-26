@@ -1,6 +1,6 @@
 <div layout='row' flex>
   <div layout='column' flex='20'>
-   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
       <md-list>
         <md-subheader class="md-no-sticky">
           Bootcamp projects
@@ -81,7 +81,6 @@
           <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
           <div class="md-list-item-text" layout="column">
             <h3>{{ item.who }}</h3>
-            <h4>{{ item.what }}</h4>
             <p>{{ item.notes }}</p>
           </div>
         </md-list-item>

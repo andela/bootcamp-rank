@@ -115,14 +115,14 @@ md-content {
   background: green;
 }
 
-<<<<<<< HEAD
-.invite {
+<<<<<<< HEAD .invite {
   max-width: 800px;
 }
 
 .bottom-sheet {
   background-color: #bbdefb;
 }
+
 .admin-side-nav {
   background-color: rgb(63, 81, 200);
 }
@@ -171,4 +171,9 @@ md-content {
 
 .black-text {
   color: rgb(66, 66, 66);
+}
+
+.profile-pic {
+  width: 215px;
+  height: 215px;
 }
