@@ -31,7 +31,7 @@
                 $state.go('home');
               });
             } else {
-              ref.child('bootcampers').child('invite').on('value', function(snapshot) {
+              ref.child('bootcampers').child('invite').once('value', function(snapshot) {
                 var emails = snapshot.val();
                 var invited = false;
                 if (emails) {
@@ -177,20 +177,22 @@
     .controller('InviteCtrl', ['$scope', 'Auth', '$mdDialog', '$mdBottomSheet', 'Utils',
       function($scope, Auth, $mdDialog, $mdBottomSheet, Utils) {
         $scope.emails = [];
-        var ref = Auth.firebase;
+        $mdBottomSheet.hide();
+        var inviteRef = Auth.firebase.child('bootcampers').child('invite');
         $scope.addBootcamper = function() {
-          if ($scope.emails !== []) {
-            ref.child('bootcampers').child('invite').once('value', function(snap) {
+          if ($scope.emails && $scope.emails.length !== 0) {
+            inviteRef.once('value', function(snap) {
               var bootcampers = snap.val();
               if (!Array.isArray(bootcampers)) {
                 bootcampers = $scope.emails;
               } else {
                 bootcampers = bootcampers.concat($scope.emails);
               }
-              ref.child('bootcampers').child('invite').set(bootcampers);
-              $mdDialog.hide();
-              $mdBottomSheet.hide();
-
+              inviteRef.set(bootcampers, function(err) {
+                Utils.toast(err || 'Invite list updated');
+                console.log(bootcampers);
+                $mdDialog.hide();
+              });
             });
           } else {
             Utils.toast('You have not entered any email');
