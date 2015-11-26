@@ -94,7 +94,7 @@
         <md-card layout='column' class='md-margin md-padding' flex>
           <p class='md-display-1 bold-text packed-bottom packed-top'>Comments</p>
           <p class='packed-top packed-bottom'>{{message}}</p>
-          <md-list-item ng-repeat="item in comments" class='packed-top'>
+          <md-list-item ng-repeat="item in comments" class='packed-top' layout-align='start start'>
             <img ng-src="{{item.picture}}" class="md-avatar" />
             <div layout="column">
               <p class='md-headline packed-bottom'>{{ item.name }}</p>
@@ -104,11 +104,6 @@
             <md-divider flex></md-divider>
             <br/>
           </md-list-item>
-        </md-card>
-        <md-card layout='column' class='md-padding' flex>
-          <p class='md-display-1 bold-text packed-bottom packed-top'>Reports</p>
-          <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels">
-          </canvas>
         </md-card>
     </md-content>
   </section>
