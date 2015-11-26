@@ -26,8 +26,8 @@
 
   window.app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
     function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
-      // For any unmatched url, redirect to /
-      $urlRouterProvider.otherwise('/');
+      // For any unmatched url, redirect to /404
+      $urlRouterProvider.otherwise('404');
       $mdThemingProvider.theme('default')
         .backgroundPalette('grey', {
           default: '200'
