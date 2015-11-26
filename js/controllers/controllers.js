@@ -75,10 +75,12 @@ angular.module('bootrank.controllers', [])
       Auth.getProjects(function(projects) {
         $scope.projects = projects;
       });
+
       $scope.showRating = false;
       $scope.changeCurrentProject = function(project) {
         $mdSidenav('left').close();
         $scope.currentProject = project;
+        $scope.rating = {};
         $scope.showRating = true;
         $scope.rating.quality = 0;
         $scope.rating.uiux = 0;
@@ -86,6 +88,7 @@ angular.module('bootrank.controllers', [])
         $scope.rating.confidence = 0;
         $scope.rating.comment = null;
       };
+
       $scope.submitRating = function() {
         var score = $scope.currentProject;
         var ref = Auth.firebase;

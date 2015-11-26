@@ -11,19 +11,10 @@
   window.app.run(['$rootScope', '$location', '$state', 'Auth',
     function($rootScope, $location, $state, Auth) {
       // check if the user loggied in
-      if (Auth.getUser()) {
-        var user = JSON.parse(Auth.getUser());
-        user = user.google.cachedUserProfile;
-        $rootScope.user = user;
-        $state.go('home');
-
-      } else {
-        $state.go('login');
-      }
 
       Auth.firebase.onAuth(function(authData) {
         if (authData && authData.google) {
-          if (/andela.co(m?)/.test(authData.google.cachedUserProfile.id)) {
+          if (/andela.co(m?)/.test(authData.google.cachedUserProfile.email)) {
             $rootScope.user = authData.google.cachedUserProfile;
             console.log(authData.google.cachedUserProfile);
             $state.go('home');
