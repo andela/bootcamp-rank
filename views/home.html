@@ -1,4 +1,4 @@
-<div layout="column" style="height:900px;" ng-cloak>
+<md-content layout="column" ng-cloak>
     <section layout="row" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
             <md-list>
@@ -27,22 +27,27 @@
                     <md-subheader class="md-no-sticky">
                         <h2>Scoreboard</h2>
                         <p>Click on the left side nav to rate project, you can only rate project once</p>
+                        <md-divider></md-divider>
                     </md-subheader>
-                    <hr>
-                    <div ng-show="showRating">
-                        <span class="md-title">{{currentProject.project}} By: </span>
-                        <span>{{currentProject.name}}</span>
+                    <md-subheader ng-if="showRating">
+                        <span class="md-title">{{currentProject.project}}</span>
+                        <br>
+                        <h5>{{currentProject.name}}</h5>
                         <p>
                             {{currentProject.description}}
                         </p>
-                    </div>
+                    </md-subheader>
+                    <md-subheader ng-if="!showRating">
+                        Select a project from the left panel to begin rating.
+                    </md-subheader>
                 </md-card-content>
                 <br/>
             </md-card>
             <md-card>
                 <md-card-content ng-show="showRating">
-                    <h2 class="md-title">Add Rating <small> Rating Metric, provid honest opinion</small></h2>
-                    <hr>
+                    <h2 class="md-title">Add Rating</h2>
+                    <h4><small>Rating Metric, provide honest opinion.</small></h4>
+                    <md-divider></md-divider>
                     <div class="rating">
                         <div layout="column" layout-padding>
                             <div flex="2">
@@ -83,4 +88,4 @@
             <div flex></div>
         </md-content>
     </section>
-</div>
+    </div>
