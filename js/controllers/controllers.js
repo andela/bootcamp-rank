@@ -75,6 +75,10 @@ angular.module('bootrank.controllers', [])
   ])
   .controller('HomeCtrl', ['$scope', '$rootScope', '$state', '$mdSidenav', 'Auth', 'Utils',
     function($scope, $rootScope, $state, $mdSidenav, Auth, Utils) {
+      Auth.getProjects(function(projects) {
+        $scope.projects = projects;
+        console.log(projects);
+      });
 
       // side nav
       $rootScope.openLeftMenu = function() {
@@ -112,6 +116,13 @@ angular.module('bootrank.controllers', [])
           $scope.rating.comment = '';
         }
       };
+
+      $scope.github = function(repository) {
+        window.open(repository);
+      };
+      $scope.liveDemo = function(demo) {
+        window.open(demo);
+      };
     }
   ])
   .controller('DashboardCtrl', ['$scope', 'Auth', function($scope, Auth) {
@@ -130,7 +141,7 @@ angular.module('bootrank.controllers', [])
             function() {
               $scope.submission.picture = $rootScope.user.picture;
               $scope.submission.name = $rootScope.user.name;
-              ref.child('bootcamps').child('bc4').push($scope.submission);
+              ref.child('bootcamps').child('bc4').child($rootScope.user.id).set($scope.submission);
               $scope.submission = null;
               Utils.toast('You project has been submitted');
             });
@@ -167,35 +178,11 @@ angular.module('bootrank.controllers', [])
           })
           .then(function() {});
       };
-    }
-  ])
-  .controller('DialogCtrl', ['$scope', 'Auth', '$rootScope', '$mdBottomSheet', '$mdDialog', 'Utils', '$state',
-    function($scope, Auth, $rootScope, $mdBottomSheet, $mdDialog, Utils, $state) {
-      $scope.showSheet = function($event) {
-        $scope.alert = '';
-        $mdBottomSheet.show({
-          templateUrl: 'views/bottom-sheet.html',
-          controller: 'DialogCtrl',
-          clickOutsideToClose: false,
-          targetEvent: $event
-        }).then(function() {});
-      };
-      $scope.logout = function() {
-        $mdBottomSheet.hide();
-        Auth.logout();
-        $state.go('login');
-        $rootScope.user = null;
-      };
 
-      $scope.showInvite = function(ev) {
-        $mdDialog.show({
-            controller: 'DialogCtrl',
-            templateUrl: 'views/invite-dialog.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true
-          })
-          .then(function() {});
+      $scope.dashboard = function() {
+        $mdBottomSheet.hide();
+        $state.go('dashboard');
+
       };
     }
   ])
