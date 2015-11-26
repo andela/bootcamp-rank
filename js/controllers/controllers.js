@@ -103,21 +103,23 @@
         };
 
         $scope.submitRating = function() {
-          $scope.rating.scorer_id = $rootScope.user.id;
-          $scope.rating.scorer_name = $rootScope.user.name;
-          Auth.firebase
-            .child('bootcamps')
-            .child('bc4')
-            .child($scope.currentProject.$id)
-            .child('score')
-            .push($scope.rating);
-          Utils.toast('You have rated ' + $scope.currentProject.name + '\'s project');
-          $state.go('home');
-          $scope.rating.quality = 0;
-          $scope.rating.uiux = 0;
-          $scope.rating.understanding = 0;
-          $scope.rating.confidence = 0;
-          $scope.rating.comment = '';
+          if ($rootScope.user) {
+            $scope.rating.scorer_id = $rootScope.user.id;
+            $scope.rating.scorer_name = $rootScope.user.name;
+            Auth.firebase
+              .child('bootcamps')
+              .child('bc4')
+              .child($scope.currentProject.$id)
+              .child('score')
+              .push($scope.rating);
+            Utils.toast('You have rated ' + $scope.currentProject.name + '\'s project');
+            $state.go('home');
+            $scope.rating.quality = 0;
+            $scope.rating.uiux = 0;
+            $scope.rating.understanding = 0;
+            $scope.rating.confidence = 0;
+            $scope.rating.comment = '';
+          }
         };
       }
     ])
@@ -155,6 +157,7 @@
             targetEvent: $event
           }).then(function() {});
         };
+
         $scope.logout = function() {
           $mdBottomSheet.hide();
           Auth.logout();
