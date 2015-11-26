@@ -21,65 +21,95 @@
         </md-list-item>
       </md-list>
     </md-sidenav>
-    <md-content flex layout-padding>
-      <md-card>
-        <md-card-content>
-          <md-subheader class="md-no-sticky">
-            <h3>Late Messages</h3>
-          </md-subheader>
-          <hr>
-          <div ng-show="showRating">
-            <span class="md-title">{{currentProject.project}} By: </span>
-            <span>{{currentProject.name}}</span>
-            <p>
-              {{currentProject.description}}
-            </p>
+    <md-content flex layout-padding ng-if='!project'>
+      <p>Pick someone</p>
+    </md-content>
+    <md-content flex layout-padding ng-if='project'>
+      <md-card layout='row' class=' black-card md-padding'>
+        <md-card class='profile-pic'>
+          <img src="{{project.picture}}" flex>
+        </md-card>
+        <div layout='column' class='md-padding md-margin' flex>
+          <div layout='row'>
+            <p class='white-text md-display-3 packed-top packed-bottom bold-text' flex> {{project.name}}</p>
           </div>
-        </md-card-content>
-        <br/>
-      </md-card>
-      <md-card>
-        <img ng-src="images/rate.jpg" class="md-card-image" alt="Washed Out" ng-hide="showRating">
-        <md-card-content ng-show="showRating">
-          <h2 class="md-title">Add Rating <small> Rating Metric, provid honest opinion</small></h2>
-          <hr>
-          <div class="rating">
-            <div layout="row">
-              <div flex="20">
-                Project Quality:
-              </div>
-              <md-slider flex="80" md-discrete md-accent ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
+          <div layout='row'>
+            <div layout='row'>
+              <span class='fa fa-lg fa-folder white-text md-margin' style='margin-top: 30px'></span>
+              <p class='white-text md-headline bold-text'> PROJECT:&nbsp;&nbsp;&nbsp; </p>
             </div>
-            <div layout="row">
-              <div flex="20">
-                User Interface/Experience:
-              </div>
-              <md-slider flex="80" md-discrete md-warn ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
-            </div>
-            <div layout="row">
-              <div flex="20">
-                Confidence:
-              </div>
-              <md-slider flex="80" md-discrete md-hue ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
-            </div>
-            <div layout="row">
-              <div flex="20">
-                Project Understanding:
-              </div>
-              <md-slider flex="80" md-discrete md-primary ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
-            </div>
-            <md-input-container>
-              <label>Comment</label>
-              <textarea ng-model="rating.comment" rows="5"></textarea>
-            </md-input-container>
-            <div layout="row">
-              <span flex></span>
-              <md-button class="md-raised md-primary" ng-click="submitRating()">Submit</md-button>
-            </div>
+            <p class='white-text md-headline' flex> {{project.project}}</p>
           </div>
-        </md-card-content>
+          <div layout='row'>
+            <md-button class='md-raised md-primary' ng-click='openLink(project.repository)'>
+              <i class='fa fa-lg fa-github'></i> Git repository
+            </md-button>
+            <md-button class='md-raised md-primary' ng-click='openLink(project.demo)'>
+              <i class='fa fa-lg fa-globe'></i> Live Demo
+            </md-button>
+          </div>
+        </div>
       </md-card>
-      <div flex></div>
+      <md-card class='md-padding md-margin' style='height: 250px'>
+        <div layout='row' flex>
+          <md-card class='card-blue md-margin md-padding' layout='column' flex>
+            <div layout='row'>
+              <span class='fa fa-2x fa-key md-margin white-text packed-top'></span>
+              <p class='md-headline packed-top packed-bottom white-text bold-text'>Confidence</p>
+            </div>
+            <div layout='row' layout-align='center center'>
+              <p class='md-display-4 white-text bold-text packed-top packed-bottom'>{{confidence}}</p>
+            </div>
+          </md-card>
+          <md-card class='card-green md-margin md-padding' layout='column' flex>
+            <div layout='row'>
+              <span class='fa fa-2x fa-trophy md-margin white-text packed-top'></span>
+              <p class='md-headline packed-top packed-bottom white-text bold-text'>Quality</p>
+            </div>
+            <div layout='row' layout-align='center center'>
+              <p class='md-display-4 white-text bold-text packed-top packed-bottom'>{{quality}}</p>
+            </div>
+          </md-card>
+          <md-card class='card-pink md-margin md-padding' layout='column' flex>
+            <div layout='row'>
+              <span class='fa fa-2x fa-picture-o md-margin white-text packed-top'></span>
+              <p class='md-headline packed-top packed-bottom white-text bold-text'>UI-UX</p>
+            </div>
+            <div layout='row' layout-align='center center'>
+              <p class='md-display-4 white-text bold-text packed-top packed-bottom'>{{ui_ux}}</p>
+            </div>
+          </md-card>
+          <md-card class='card-orange md-margin md-padding' layout='column' flex>
+            <div layout='row'>
+              <span class='fa fa-2x fa-graduation-cap md-margin white-text packed-top'></span>
+              <p class='md-headline packed-top packed-bottom white-text bold-text'>Understanding</p>
+            </div>
+            <div layout='row' layout-align='center center'>
+              <p class='md-display-4 white-text bold-text packed-top packed-bottom'>{{understanding}}</p>
+            </div>
+          </md-card>
+        </div>
+      </md-card>
+      <div layout='row'>
+        <md-card layout='column' class='md-margin md-padding' flex>
+          <p class='md-display-1 bold-text packed-bottom packed-top'>Comments</p>
+          <p class='packed-top packed-bottom'>{{message}}</p>
+          <md-list-item ng-repeat="item in comments" class='packed-top'>
+            <img ng-src="{{item.picture}}" class="md-avatar" />
+            <div layout="column">
+              <p class='md-headline packed-bottom'>{{ item.name }}</p>
+              <p>{{ item.comment }}</p>
+            </div>
+            <br/>
+            <md-divider flex></md-divider>
+            <br/>
+          </md-list-item>
+        </md-card>
+        <md-card layout='column' class='md-padding' flex>
+          <p class='md-display-1 bold-text packed-bottom packed-top'>Reports</p>
+          <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels">
+          </canvas>
+        </md-card>
     </md-content>
   </section>
-</div>
+  </div>

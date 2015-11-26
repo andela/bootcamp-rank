@@ -5,19 +5,25 @@
   <md-list flex layout="row" layout-align="center center">
     <md-list-item>
       <md-button class="md-grid-item-content" ng-click="showInvite()">
-        <i class="material-icons md-36">playlist_add</i>
+        <i class="material-icons md-48">playlist_add</i>
       </md-button>
       <div class="md-grid-text">Invite</div>
     </md-list-item>
     <md-list-item>
-      <md-button class="md-grid-item-content" ng-click="dashboard()">
-        <i class="material-icons md-36">dashboard</i>
+      <md-button class="md-grid-item-content" ng-click="go('dashboard')">
+        <i class="material-icons md-48">dashboard</i>
       </md-button>
       <div class="md-grid-text">Dashboard</div>
     </md-list-item>
     <md-list-item>
+      <md-button class="md-grid-item-content" ng-click="go('home')">
+        <i class="material-icons md-48">home</i>
+      </md-button>
+      <div class="md-grid-text">Home</div>
+    </md-list-item>
+    <md-list-item>
       <md-button class="md-grid-item-content" ng-click="logout()">
-        <i class="material-icons md-36">input</i>
+        <i class="material-icons md-48">input</i>
       </md-button>
       <div class="md-grid-text">Log out</div>
     </md-list-item>

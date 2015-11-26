@@ -98,14 +98,16 @@ angular.module('bootrank.controllers', [])
 
       $scope.submitRating = function() {
         if ($rootScope.user) {
-          $scope.rating.scorer_id = $rootScope.user.id;
+          console.log($rootScope.user);
           $scope.rating.scorer_name = $rootScope.user.name;
+          $scope.rating.picture = $rootScope.user.picture;
           Auth.firebase
             .child('bootcamps')
             .child('bc4')
             .child($scope.currentProject.$id)
             .child('score')
-            .push($scope.rating);
+            .child($rootScope.user.id)
+            .set($scope.rating);
           Utils.toast('You have rated ' + $scope.currentProject.name + '\'s project');
           $state.go('home');
           $scope.rating.quality = 0;
@@ -124,11 +126,76 @@ angular.module('bootrank.controllers', [])
       };
     }
   ])
-  .controller('DashboardCtrl', ['$scope', 'Auth', function($scope, Auth) {
+  .controller('DashboardCtrl', ['$scope', '$mdSidenav', 'Auth', function($scope, $mdSidenav, Auth) {
     Auth.getProjects(function(projects) {
       $scope.projects = projects;
       console.log(projects);
     });
+    $scope.changeCurrentProject = function(project) {
+      $mdSidenav('left').close();
+      $scope.project = project;
+      getTotal(project);
+    };
+    var getTotal = function(project) {
+      $scope.confidence = 0;
+      $scope.quality = 0;
+      $scope.ui_ux = 0;
+      $scope.understanding = 0;
+      var count = 0;
+      $scope.comments = [];
+      for (var x in project.score) {
+        count += 1;
+        if (Number(project.score[x].confidence)) {
+          $scope.confidence += Number(project.score[x].confidence);
+        }
+        if (Number(project.score[x].quality)) {
+          $scope.quality += Number(project.score[x].quality);
+        }
+        if (Number(project.score[x].uiux)) {
+          $scope.ui_ux += Number(project.score[x].uiux);
+        }
+        if (Number(project.score[x].understanding)) {
+          $scope.understanding += Number(project.score[x].understanding);
+        }
+        $scope.comments.push({
+          picture: project.score[x].picture,
+          name: project.score[x].scorer_name,
+          comment: ((project.score[x].comment.length === 0) ? 'No comment' : project.score[x].comment)
+        });
+      }
+
+      if ($scope.comments.length === 0) {
+        $scope.message = 'No comments';
+      }
+      if ($scope.confidence !== 0) {
+        $scope.confidence = $scope.confidence / count;
+        $scope.confidence = Math.round($scope.confidence);
+      }
+      if ($scope.quality !== 0) {
+        $scope.quality = $scope.quality / count;
+        $scope.quality = Math.round($scope.quality);
+      }
+      if ($scope.ui_ux !== 0) {
+        $scope.ui_ux = $scope.ui_ux / count;
+        $scope.ui_ux = Math.round($scope.ui_ux);
+      }
+      if ($scope.understanding !== 0) {
+        $scope.understanding = $scope.understanding / count;
+        $scope.understanding = Math.round($scope.understanding);
+      }
+    };
+
+    $scope.openLink = function(link) {
+      console.log('Clicked me');
+      window.open(link);
+    };
+
+    $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    $scope.series = ['Series A', 'Series B'];
+    $scope.data = [
+      [65, 59, 80, 81, 56, 55, 40],
+      [28, 48, 40, 19, 86, 27, 90]
+    ];
   }])
   .controller('ProjectCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils',
     function($scope, $rootScope, $state, Auth, Utils) {
@@ -178,9 +245,9 @@ angular.module('bootrank.controllers', [])
           .then(function() {});
       };
 
-      $scope.dashboard = function() {
+      $scope.go = function(page) {
         $mdBottomSheet.hide();
-        $state.go('dashboard');
+        $state.go(page);
 
       };
     }
@@ -213,5 +280,6 @@ angular.module('bootrank.controllers', [])
         $mdDialog.hide();
         $mdBottomSheet.hide();
       };
+
     }
   ]);

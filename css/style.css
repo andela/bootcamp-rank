@@ -140,6 +140,68 @@ md-content {
   background: green;
 }
 
-.invite {
+<<<<<<< HEAD .invite {
   max-width: 800px;
 }
+<<<<<<< HEAD
+
+.bottom-sheet {
+  background-color: #bbdefb;
+}
+
+.admin-side-nav {
+  background-color: rgb(63, 81, 200);
+}
+
+.packed-top {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.packed-bottom {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.list-item {
+  margin-left: 25px;
+}
+
+.card-blue {
+  background-color: rgb(78, 142, 247);
+}
+
+.card-green {
+  background-color: rgb(122, 191, 67);
+}
+
+.card-pink {
+  background-color: rgb(222, 23, 113);
+}
+
+.card-orange {
+  background-color: rgb(255, 186, 0);
+}
+
+.white-text {
+  color: white;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.black-card {
+  background-color: rgb(66, 66, 66);
+}
+
+.black-text {
+  color: rgb(66, 66, 66);
+}
+
+.profile-pic {
+  width: 215px;
+  height: 215px;
+}
+=======
+>>>>>>> develop
