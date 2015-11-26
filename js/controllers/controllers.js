@@ -6,20 +6,28 @@ angular.module('bootrank.controllers', [])
       }
       $scope.login = function() {
         Auth.login().then(function(authData) {
-          var data = authData.google.cachedUserProfile;
-          var ref = Auth.firebase,
-            isNewUser = true;
+          if (!authData) {
+            return Utils.toast('Invalid Authentication data');
+          }
+
+          var data = authData.google.cachedUserProfile,
+            ref = Auth.firebase,
+            userRef = ref.child('users');
+
           if (/andela.co(m?)/.test(data.hd)) {
             $rootScope.user = data;
-            if (authData && isNewUser) {
-              ref.child('users').child(data.id).set(data);
+            // check if user is old
+            userRef.child(data.id).once('value', function(snap) {
+              if (snap.val()) {
+                // New user, save user
+                snap.ref().set(data);
+              } else {
+                // Old user, update user
+                snap.ref().update(data);
+              }
               Utils.toast('Welcome to BootRank ' + data.name);
               $state.go('home');
-            } else {
-              ref.child('users').child(data.id).update(data);
-              Utils.toast('Welcome to BootRank ' + data.name);
-              $state.go('home');
-            }
+            });
           } else {
             ref.child('bootcampers').child('invite').on('value', function(snapshot) {
               var emails = snapshot.val();
@@ -90,11 +98,9 @@ angular.module('bootrank.controllers', [])
       };
 
       $scope.submitRating = function() {
-        var score = $scope.currentProject;
-        var ref = Auth.firebase;
         $scope.rating.scorer_id = $rootScope.user.id;
         $scope.rating.scorer_name = $rootScope.user.name;
-        ref.child('bootcamps').child('bc4').child(score.$id).child('score').push($scope.rating);
+        Auth.firebase.child('bootcamps').child('bc4').child($scope.currentProject.$id).child('score').push($scope.rating);
         Utils.toast('You have rated ' + $scope.currentProject.name + '\'s project');
         $state.go('home');
         $scope.rating.quality = 0;
@@ -102,7 +108,6 @@ angular.module('bootrank.controllers', [])
         $scope.rating.understanding = 0;
         $scope.rating.confidence = 0;
         $scope.rating.comment = null;
-
       };
     }
   ])
@@ -114,16 +119,14 @@ angular.module('bootrank.controllers', [])
   }])
   .controller('ProjectCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils', function($scope, $rootScope, $state, Auth, Utils) {
     if ($rootScope.user) {
-      var ref = Auth.firebase;
       $scope.submitProject = function(event) {
         Utils.dialog('project submission', 'Are you sure of your details?, Ensure that all the infomation is accurate', event, function() {
           $scope.submission.picture = $rootScope.user.picture;
           $scope.submission.name = $rootScope.user.name;
-          ref.child('bootcamps').child('bc4').push($scope.submission);
+          Auth.firebase.child('bootcamps').child('bc4').push($scope.submission);
           $scope.submission = null;
           Utils.toast('You project has been submitted');
         });
-
       };
     } else {
       $state.go('login');
