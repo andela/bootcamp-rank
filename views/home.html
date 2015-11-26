@@ -12,7 +12,7 @@
         </md-subheader class="md-no-sticky">
         <md-divider></md-divider>
         <md-list-item class="md-2-line" ng-repeat="project in projects | filter:search" ng-click="changeCurrentProject(project)">
-          <img ng-src="{{project.picture}}" class="md-avatar user-image" alt="{{message.who}}">
+          <img ng-src="{{project.picture}}" class="md-avatar user-image" alt="{{project.name}}">
           <div class="md-list-item-text" layout="column">
             <h3>{{ project.project }}</h3>
             <h4>{{ project.name }}</h4>
@@ -32,9 +32,17 @@
           <div ng-show="showRating">
             <span class="md-title">{{currentProject.project}} By: </span>
             <span>{{currentProject.name}}</span>
+            </p>
+            <hr>
             <p>
               {{currentProject.description}}
             </p>
+            <md-button class="md-raised md-primary md-padding" ng-click="github(currentProject.repository)">
+              <i class="fa fa-github fa-1x"></i> View on github
+            </md-button>
+            <md-button class="md-raised md-primary md-padding" ng-click="liveDemo(currentProject.demo)">
+              <i class="fa fa-globe fa-1x"></i> Live demo
+            </md-button>
           </div>
         </md-card-content>
         <br/>
