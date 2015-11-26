@@ -1,86 +1,86 @@
 <div layout="column" style="height:900px;" ng-cloak>
-  <section layout="row" flex>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-      <md-list>
-        <md-subheader class="md-no-sticky">
-          Bootcamp projects
-          <md-input-container>
-            <i class="material-icons"> sort</i>
-            <label>Search</label>
-            <input ng-model="search"></input>
-          </md-input-container>
-        </md-subheader class="md-no-sticky">
-        <md-divider></md-divider>
-        <md-list-item class="md-2-line" ng-repeat="project in projects | filter:search" ng-click="changeCurrentProject(project)">
-          <img ng-src="{{project.picture}}" class="md-avatar user-image" alt="{{message.who}}">
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ project.project }}</h3>
-            <h4>{{ project.name }}</h4>
-          </div>
-          <md-divider></md-divider>
-        </md-list-item>
-      </md-list>
-    </md-sidenav>
-    <md-content flex layout-padding>
-      <md-card>
-        <md-card-content>
-          <md-subheader class="md-no-sticky">
-            <h2>Scoreboard</h2>
-            <p>Click on the left side nav to rate project, you can only rate project once</p>
-          </md-subheader>
-          <hr>
-          <div ng-show="showRating">
-            <span class="md-title">{{currentProject.project}} By: </span>
-            <span>{{currentProject.name}}</span>
-            <p>
-              {{currentProject.description}}
-            </p>
-          </div>
-        </md-card-content>
-        <br/>
-      </md-card>
-      <md-card>
-        <md-card-content ng-show="showRating">
-          <h2 class="md-title">Add Rating <small> Rating Metric, provid honest opinion</small></h2>
-          <hr>
-          <div class="rating">
-            <div layout="column">
-              <div flex="2">
-                <i class="fa fa-certificate "></i> Project Quality:
-              </div>
-              <md-slider flex="5" md-discrete md-accent ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
-            </div>
-            <div layout="column">
-              <div flex="2">
-                <i class="material-icons">important_devices   </i> User Interface/Experience:
-              </div>
-              <md-slider flex="5" md-discrete md-warn ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
-            </div>
-            <div layout="column">
-              <div flex="2">
-                <i class="material-icons">accessibility</i> Confidence:
-              </div>
-              <md-slider flex="5" md-discrete md-hue ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
-            </div>
-            <div layout="column">
-              <div flex="2">
-                <i class="fa fa-ship "></i> Project Understanding:
-              </div>
-              <md-slider flex="5" md-discrete md-primary ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
-            </div>
-            <md-input-container>
-              <i class="material-icons">comment</i>
-              <label>Comment</label>
-              <textarea ng-model="rating.comment" columns="5"></textarea>
-            </md-input-container>
-            <div layout="row">
-              <span flex></span>
-              <md-button class="md-raised md-primary" ng-click="submitRating()">Submit</md-button>
-            </div>
-          </div>
-        </md-card-content>
-      </md-card>
-      <div flex></div>
-    </md-content>
-  </section>
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-list>
+                <md-subheader class="md-no-sticky">
+                    Bootcamp projects
+                    <md-input-container>
+                        <i class="material-icons"> sort</i>
+                        <label>Search</label>
+                        <input ng-model="search"></input>
+                    </md-input-container>
+                </md-subheader class="md-no-sticky">
+                <md-divider></md-divider>
+                <md-list-item class="md-2-line" ng-repeat="project in projects | filter:search" ng-click="changeCurrentProject(project)">
+                    <img ng-src="{{project.picture}}" class="md-avatar user-image" alt="{{message.who}}">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ project.project }}</h3>
+                        <h4>{{ project.name }}</h4>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content flex layout-padding>
+            <md-card>
+                <md-card-content>
+                    <md-subheader class="md-no-sticky">
+                        <h2>Scoreboard</h2>
+                        <p>Click on the left side nav to rate project, you can only rate project once</p>
+                    </md-subheader>
+                    <hr>
+                    <div ng-show="showRating">
+                        <span class="md-title">{{currentProject.project}} By: </span>
+                        <span>{{currentProject.name}}</span>
+                        <p>
+                            {{currentProject.description}}
+                        </p>
+                    </div>
+                </md-card-content>
+                <br/>
+            </md-card>
+            <md-card>
+                <md-card-content ng-show="showRating">
+                    <h2 class="md-title">Add Rating <small> Rating Metric, provid honest opinion</small></h2>
+                    <hr>
+                    <div class="rating">
+                        <div layout="column" layout-padding>
+                            <div flex="2">
+                                <i class="fa fa-certificate "></i> Project Quality:
+                            </div>
+                            <md-slider layout-margin flex="5" md-discrete md-accent ng-model="rating.quality" step="1" min="1" max="10" aria-label="rating"></md-slider>
+                        </div>
+                        <div layout="column" layout-padding>
+                            <div flex="2">
+                                <i class="material-icons">important_devices   </i> User Interface/Experience:
+                            </div>
+                            <md-slider layout-margin flex="5" md-discrete md-warn ng-model="rating.uiux" step="1" min="1" max="10" aria-label="rating"></md-slider>
+                        </div>
+                        <div layout="column" layout-padding>
+                            <div flex="2">
+                                <i class="material-icons">accessibility</i> Confidence:
+                            </div>
+                            <md-slider layout-margin flex="5" md-discrete md-hue ng-model="rating.confidence" step="1" min="1" max="10" aria-label="rating"></md-slider>
+                        </div>
+                        <div layout="column" layout-padding>
+                            <div flex="2">
+                                <i class="fa fa-ship "></i> Project Understanding:
+                            </div>
+                            <md-slider layout-margin flex="5" md-discrete md-primary ng-model="rating.understanding" step="1" min="1" max="10" aria-label="rating"></md-slider>
+                        </div>
+                        <md-input-container>
+                            <i class="material-icons">comment</i>
+                            <label>Comment</label>
+                            <textarea ng-model="rating.comment" columns="5"></textarea>
+                        </md-input-container>
+                        <div layout="row">
+                            <span flex></span>
+                            <md-button class="md-raised md-primary" ng-click="submitRating()">Submit</md-button>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <div flex></div>
+        </md-content>
+    </section>
 </div>
