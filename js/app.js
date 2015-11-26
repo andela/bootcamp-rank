@@ -10,25 +10,23 @@
 
   window.app.run(['$rootScope', '$location', '$state', 'Auth',
     function($rootScope, $location, $state, Auth) {
-      // check if the user loggied in
 
+      // check if the user loggied in
       Auth.firebase.onAuth(function(authData) {
         if (authData && authData.google) {
-          if (/andela.co(m?)/.test(authData.google.cachedUserProfile.email)) {
-            $rootScope.user = authData.google.cachedUserProfile;
-            console.log(authData.google.cachedUserProfile);
-            $state.go('home');
-          } else {
-            $state.go('login');
-          }
+          $rootScope.user = authData.google.cachedUserProfile;
+          console.log(authData.google.cachedUserProfile);
+          return $state.go('home');
         }
+
+        $state.go('login');
       });
     }
   ]);
 
   window.app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
     function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
-      // For any unmatched url, redirect to /state1
+      // For any unmatched url, redirect to /
       $urlRouterProvider.otherwise('/');
       $mdThemingProvider.theme('default')
         .backgroundPalette('grey', {
