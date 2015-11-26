@@ -64,8 +64,8 @@ angular.module('bootrank.controllers', [])
       };
     }
   ])
-  .controller('HomeCtrl', ['$scope', '$rootScope', '$state', '$mdSidenav', '$window', 'Auth', 'Utils',
-    function($scope, $rootScope, $state, $mdSidenav, $window, Auth, Utils) {
+  .controller('HomeCtrl', ['$scope', '$rootScope', '$state', '$mdSidenav', 'Auth', 'Utils',
+    function($scope, $rootScope, $state, $mdSidenav, Auth, Utils) {
 
       // side nav
       $rootScope.openLeftMenu = function() {
@@ -102,14 +102,7 @@ angular.module('bootrank.controllers', [])
         $scope.rating.understanding = 0;
         $scope.rating.confidence = 0;
         $scope.rating.comment = null;
-      };
 
-      $scope.github = function(repository) {
-        $window.open(repository);
-      };
-
-      $scope.liveDemo = function(demo) {
-        $window.open(demo);
       };
     }
   ])

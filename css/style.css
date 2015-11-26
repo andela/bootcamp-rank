@@ -6,7 +6,7 @@
 }
 
 
-/*material icons*/
+/* Material icons */
 
 .material-icons {
   font-family: 'Material Icons';
@@ -49,11 +49,12 @@
   font-size: 48px;
 }
 
+
+/* Material icons */
+
 .home {
-  background: url(../images/rate.jpg) center center no-repeat;
-  background-size: cover;
   text-align: center;
-  height: 93vh;
+  height: 90vh;
   margin: 0 0px;
   text-align: center;
   padding-bottom: 0;
@@ -65,7 +66,7 @@
   margin-top: 200px;
   font-size: 3.5em;
   color: white;
-  text-shadow: 0 0 4px #333;
+  text-shadow: 0 2px 4px #333;
   display: inline-block;
   margin-bottom: 0px
 }
@@ -76,13 +77,18 @@
   margin-top: 0px;
 }
 
-.login {
-  padding-top: 10px;
-  width: 100%;
+.login {}
+
+i.fa {
+  vertical-align: middle;
 }
 
 md-content {
   height: 100vh;
+}
+
+.inline {
+  display: inline;
 }
 
 .user-image {
@@ -92,6 +98,29 @@ md-content {
   border-radius: 50%;
   margin-right: 10px;
   margin-top: -2px;
+}
+
+.image-underlay {
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  z-index: 0;
+  background: url("../images/rate.jpg") center center repeat-y;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.image-overlay {
+  z-index: 5;
+  position: relative;
+  height: 90vh;
 }
 
 .md-icon-button {
@@ -112,9 +141,5 @@ md-content {
 }
 
 .invite {
-  width: 800px;
-}
-
-.bottom-sheet {
-  background-color: #bbdefb;
+  max-width: 800px;
 }

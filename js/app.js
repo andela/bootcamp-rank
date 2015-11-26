@@ -11,25 +11,20 @@
   window.app.run(['$rootScope', '$location', '$state', 'Auth',
     function($rootScope, $location, $state, Auth) {
       // check if the user loggied in
-
       Auth.firebase.onAuth(function(authData) {
         if (authData && authData.google) {
-          if (/andela.co(m?)/.test(authData.google.cachedUserProfile.email)) {
-            $rootScope.user = authData.google.cachedUserProfile;
-            console.log(authData.google.cachedUserProfile);
-            $state.go('home');
-          } else {
-            $state.go('login');
-          }
+          $rootScope.user = authData.google.cachedUserProfile;
+          return $state.go('home');
         }
+        $state.go('login');
       });
     }
   ]);
 
   window.app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
     function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
-      // For any unmatched url, redirect to /state1
-      $urlRouterProvider.otherwise('/');
+      // For any unmatched url, redirect to /404
+      $urlRouterProvider.otherwise('404');
       $mdThemingProvider.theme('default')
         .backgroundPalette('grey', {
           default: '200'
@@ -52,7 +47,7 @@
           templateUrl: 'views/dashboard.html'
         })
         .state('projects', {
-          url: '/project/submit',
+          url: '/projects/submit',
           controller: 'ProjectCtrl',
           templateUrl: 'views/project.html'
         })
@@ -60,7 +55,6 @@
           url: '/404',
           templateUrl: 'views/404.html'
         });
-      // $locationProvider.html5Mode(true);
     }
   ]);
 
