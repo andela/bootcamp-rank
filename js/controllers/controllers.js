@@ -121,6 +121,44 @@ angular.module('bootrank.controllers', [])
       $scope.projects = projects;
       console.log(projects);
     });
+    $scope.todos = [{
+      face: '../images/user.png',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: '../images/user.png',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: '../images/user.png',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: '../images/user.png',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: '../images/user.png',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, ];
+    $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    $scope.series = ['Series A', 'Series B'];
+
+    $scope.data = [
+      [65, 59, 80, 81, 56, 55, 40],
+      [28, 48, 40, 19, 86, 27, 90]
+    ];
   }])
   .controller('ProjectCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils',
     function($scope, $rootScope, $state, Auth, Utils) {
@@ -187,7 +225,6 @@ angular.module('bootrank.controllers', [])
             ref.child('bootcampers').child('invite').set(bootcampers);
             $mdDialog.hide();
             $mdBottomSheet.hide();
-
           });
         } else {
           Utils.toast('You have not entered any email');
@@ -198,5 +235,5 @@ angular.module('bootrank.controllers', [])
         $mdDialog.hide();
         $mdBottomSheet.hide();
       };
-    }
-  ]);
+
+  }]);

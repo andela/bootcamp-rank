@@ -5,7 +5,8 @@
     'bootrank.controllers',
     'ui.router',
     'ngMaterial',
-    'firebase'
+    'firebase',
+    'chart.js'
   ]);
 
   window.app.run(['$rootScope', '$location', '$state', 'Auth',
@@ -53,6 +54,11 @@
           url: '/projects/submit',
           controller: 'ProjectCtrl',
           templateUrl: 'views/project.html'
+        })
+        .state('admin', {
+          url: '/admin',
+          controller: 'AdminCtrl',
+          templateUrl: 'views/admin-panel.html'
         })
         .state('404', {
           url: '/404',
