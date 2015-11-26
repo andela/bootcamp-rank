@@ -59,10 +59,11 @@ angular.module('bootrank.controllers', [])
         $mdBottomSheet.show({
           templateUrl: 'views/bottom-sheet.html',
           controller: 'LoginCtrl',
-          clickOutsideToClose: false,
+          clickOutsideToClose: true,
           targetEvent: $event
         }).then(function() {});
       };
+
       $scope.logout = function() {
         $mdBottomSheet.hide();
         Auth.logout();
