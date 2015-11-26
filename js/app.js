@@ -50,7 +50,7 @@
           templateUrl: 'views/dashboard.html'
         })
         .state('projects', {
-          url: '/project/submit',
+          url: '/projects/submit',
           controller: 'ProjectCtrl',
           templateUrl: 'views/project.html'
         })
