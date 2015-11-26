@@ -75,7 +75,7 @@
                         </md-input-container>
                         <div layout="row">
                             <span flex></span>
-                            <md-button class="md-raised md-primary" ng-click="submitRating()">Submit</md-button>
+                            <md-button class="md-raised md-primary" ng-disabled="!user" ng-click="submitRating()">Submit</md-button>
                         </div>
                     </div>
                 </md-card-content>
