@@ -32,7 +32,7 @@
 
       $stateProvider
         .state('login', {
-          url: '/#/',
+          url: '/',
           controller: 'LoginCtrl',
           templateUrl: 'views/login.html'
         })

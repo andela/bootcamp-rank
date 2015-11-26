@@ -32,13 +32,23 @@
       <md-button class="md-icon-button" aria-label="Settings" hide-gt-md ng-click='openLeftMenu()' aria-label="openLeftMenu" ng-controller="HomeCtrl">
         <i class="material-icons md-36">menu</i>
       </md-button>
-      <md-button class="md-icon-button" aria-label="Settings">
-        <i class="material-icons md-36">brightness_auto </i>
-      </md-button>
+      <div>
+        <md-button class="md-icon-button inline" ui-sref="home" aria-label="Settings">
+          <i class="material-icons md-36">brightness_auto</i>
+        </md-button>
+      </div>
       <h2>
-          <span hide-md hide-sm>BootRank</span>
-        </h2>
+        <span hide-md hide-sm>BootRank</span>
+      </h2>
       <span flex></span>
+       <div>
+        <md-button class="md-icon-button inline" ng-if="!user" ui-sref="login" aria-label="Login page">
+          <i class="material-icons md-24">lock</i>
+          <md-tooltip md-direction="down">
+            Go to Login page
+          </md-tooltip>
+        </md-button>
+      </div>
       <md-button aria-label="Favorite" ng-if="user">
         {{user.name}}
       </md-button>

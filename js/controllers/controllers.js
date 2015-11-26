@@ -1,9 +1,7 @@
 angular.module('bootrank.controllers', [])
   .controller('LoginCtrl', ['$scope', 'Auth', '$rootScope', '$mdBottomSheet', 'Utils', '$state',
     function($scope, Auth, $rootScope, $mdBottomSheet, Utils, $state) {
-      if ($rootScope.user) {
-        $state.go('home');
-      }
+
       $scope.login = function() {
         Auth.login().then(function(authData) {
           if (!authData) {
@@ -156,7 +154,7 @@ angular.module('bootrank.controllers', [])
         $mdBottomSheet.show({
           templateUrl: 'views/bottom-sheet.html',
           controller: 'DialogCtrl',
-          clickOutsideToClose: false,
+          clickOutsideToClose: true,
           targetEvent: $event
         }).then(function() {});
       };
