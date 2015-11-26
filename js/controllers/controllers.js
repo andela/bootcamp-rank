@@ -99,14 +99,16 @@ angular.module('bootrank.controllers', [])
 
       $scope.submitRating = function() {
         if ($rootScope.user) {
-          $scope.rating.scorer_id = $rootScope.user.id;
+          console.log($rootScope.user);
           $scope.rating.scorer_name = $rootScope.user.name;
+          $scope.rating.picture = $rootScope.user.picture;
           Auth.firebase
             .child('bootcamps')
             .child('bc4')
             .child($scope.currentProject.$id)
             .child('score')
-            .push($scope.rating);
+            .child($rootScope.user.id)
+            .set($scope.rating);
           Utils.toast('You have rated ' + $scope.currentProject.name + '\'s project');
           $state.go('home');
           $scope.rating.quality = 0;
