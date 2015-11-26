@@ -100,7 +100,12 @@ angular.module('bootrank.controllers', [])
       $scope.submitRating = function() {
         $scope.rating.scorer_id = $rootScope.user.id;
         $scope.rating.scorer_name = $rootScope.user.name;
-        Auth.firebase.child('bootcamps').child('bc4').child($scope.currentProject.$id).child('score').push($scope.rating);
+        Auth.firebase
+          .child('bootcamps')
+          .child('bc4')
+          .child($scope.currentProject.$id)
+          .child('score')
+          .push($scope.rating);
         Utils.toast('You have rated ' + $scope.currentProject.name + '\'s project');
         $state.go('home');
         $scope.rating.quality = 0;
@@ -117,21 +122,26 @@ angular.module('bootrank.controllers', [])
       console.log(projects);
     });
   }])
-  .controller('ProjectCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils', function($scope, $rootScope, $state, Auth, Utils) {
-    if ($rootScope.user) {
-      $scope.submitProject = function(event) {
-        Utils.dialog('project submission', 'Are you sure of your details?, Ensure that all the infomation is accurate', event, function() {
-          $scope.submission.picture = $rootScope.user.picture;
-          $scope.submission.name = $rootScope.user.name;
-          Auth.firebase.child('bootcamps').child('bc4').push($scope.submission);
-          $scope.submission = null;
-          Utils.toast('You project has been submitted');
-        });
-      };
-    } else {
-      $state.go('login');
+  .controller('ProjectCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils',
+    function($scope, $rootScope, $state, Auth, Utils) {
+      if ($rootScope.user) {
+        $scope.submitProject = function(event) {
+          Utils.dialog('project submission',
+            'Are you sure of your details?, Ensure that all the infomation is accurate',
+            event,
+            function() {
+              $scope.submission.picture = $rootScope.user.picture;
+              $scope.submission.name = $rootScope.user.name;
+              Auth.firebase.child('bootcamps').child('bc4').push($scope.submission);
+              $scope.submission = null;
+              Utils.toast('You project has been submitted');
+            });
+        };
+      } else {
+        $state.go('login');
+      }
     }
-  }]).controller('DialogCtrl', ['$scope', 'Auth', '$rootScope', '$mdBottomSheet', '$mdDialog', 'Utils', '$state',
+  ]).controller('DialogCtrl', ['$scope', 'Auth', '$rootScope', '$mdBottomSheet', '$mdDialog', 'Utils', '$state',
     function($scope, Auth, $rootScope, $mdBottomSheet, $mdDialog, Utils, $state) {
       $scope.showSheet = function($event) {
         $scope.alert = '';
@@ -161,30 +171,32 @@ angular.module('bootrank.controllers', [])
       };
     }
   ])
-  .controller('InviteCtrl', ['$scope', 'Auth', '$mdDialog', '$mdBottomSheet', 'Utils', function($scope, Auth, $mdDialog, $mdBottomSheet, Utils) {
-    $scope.tags = [];
-    var ref = Auth.firebase;
-    $scope.addBootcamper = function() {
-      if ($scope.tags !== []) {
-        ref.child('bootcampers').child('invite').once('value', function(snap) {
-          var bootcampers = snap.val();
-          if (!Array.isArray(bootcampers)) {
-            bootcampers = $scope.tags;
-          } else {
-            bootcampers = bootcampers.concat($scope.tags);
-          }
-          ref.child('bootcampers').child('invite').set(bootcampers);
-          $mdDialog.hide();
-          $mdBottomSheet.hide();
+  .controller('InviteCtrl', ['$scope', 'Auth', '$mdDialog', '$mdBottomSheet', 'Utils',
+    function($scope, Auth, $mdDialog, $mdBottomSheet, Utils) {
+      $scope.tags = [];
+      var ref = Auth.firebase;
+      $scope.addBootcamper = function() {
+        if ($scope.tags !== []) {
+          ref.child('bootcampers').child('invite').once('value', function(snap) {
+            var bootcampers = snap.val();
+            if (!Array.isArray(bootcampers)) {
+              bootcampers = $scope.tags;
+            } else {
+              bootcampers = bootcampers.concat($scope.tags);
+            }
+            ref.child('bootcampers').child('invite').set(bootcampers);
+            $mdDialog.hide();
+            $mdBottomSheet.hide();
 
-        });
-      } else {
-        Utils.toast('You have not entered any email');
-      }
-    };
+          });
+        } else {
+          Utils.toast('You have not entered any email');
+        }
+      };
 
-    $scope.cancel = function() {
-      $mdDialog.hide();
-      $mdBottomSheet.hide();
-    };
-  }]);
+      $scope.cancel = function() {
+        $mdDialog.hide();
+        $mdBottomSheet.hide();
+      };
+    }
+  ]);
