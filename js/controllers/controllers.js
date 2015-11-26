@@ -21,11 +21,11 @@
               // Check if user is old
               userRef.child(data.id).once('value', function(snap) {
                 if (snap.val()) {
-                  // New user, save user
-                  snap.ref().set(data);
-                } else {
-                  // Old user, update user
+                  // Old user, save user
                   snap.ref().update(data);
+                } else {
+                  // New user, update user
+                  snap.ref().set(data);
                 }
                 Utils.toast('Welcome to BootRank ' + data.name);
                 $state.go('home');
