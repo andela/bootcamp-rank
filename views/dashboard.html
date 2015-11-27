@@ -21,9 +21,10 @@
         </md-list-item>
       </md-list>
     </md-sidenav>
-    <md-content flex layout-padding ng-if='!project'>
-      <p>Pick someone</p>
-    </md-content>
+    <md-card ng-if='!project' flex layout='column' layout-align='start center' class='space-top'>
+      <img src="../images/pick.png" class='profile-pic' />
+      <p class='md-display-1 bold-text'>Pick someone to view their profile</p>
+    </md-card>
     <md-content flex layout-padding ng-if='project'>
       <md-card layout='row' class=' black-card md-padding'>
         <md-card class='profile-pic'>
