@@ -31,12 +31,14 @@ angular.module('bootrank.controllers', [])
             ref.child('bootcampers').child('invite').once('value', function(snapshot) {
               var emails = snapshot.val();
               var invited = false;
+              console.log(data);
               if (emails) {
                 for (var i = 0; i < emails.length; i++) {
-                  if (data.email.trim() === emails[i].trim()) {
+                  console.log(data.email + ':' + emails[i]);
+                  if (data.email === emails[i]) {
                     $rootScope.user = data;
                     invited = true;
-                    $state.go('projects');
+                    $state.go('home');
                     break;
                   }
                 }
@@ -77,7 +79,6 @@ angular.module('bootrank.controllers', [])
     function($scope, $rootScope, $state, $mdSidenav, Auth, Utils) {
       Auth.getProjects(function(projects) {
         $scope.projects = projects;
-        console.log(projects);
       });
 
       // side nav
@@ -99,7 +100,6 @@ angular.module('bootrank.controllers', [])
 
       $scope.submitRating = function() {
         if ($rootScope.user) {
-          console.log($rootScope.user);
           $scope.rating.scorer_name = $rootScope.user.name;
           $scope.rating.picture = $rootScope.user.picture;
           Auth.firebase
@@ -130,7 +130,6 @@ angular.module('bootrank.controllers', [])
   .controller('DashboardCtrl', ['$scope', '$mdSidenav', 'Auth', function($scope, $mdSidenav, Auth) {
     Auth.getProjects(function(projects) {
       $scope.projects = projects;
-      console.log(projects);
     });
     $scope.changeCurrentProject = function(project) {
       $mdSidenav('left').close();

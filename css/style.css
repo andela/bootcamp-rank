@@ -144,10 +144,6 @@ md-content {
   max-width: 800px;
 }
 
-.bottom-sheet {
-  background-color: #bbdefb;
-}
-
 .admin-side-nav {
   background-color: rgb(63, 81, 200);
 }
@@ -199,10 +195,11 @@ md-content {
 }
 
 .profile-pic {
+  margin: 50 60px;
   width: 215px;
   height: 215px;
 }
 
-.space-top {
-  margin-top: 200px;
+.dash {
+  height: 700px;
 }

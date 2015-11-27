@@ -1,4 +1,4 @@
-<div layout="column" style="height:1000px;">
+<div layout="column" style="height:900px;">
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
       <md-list>
@@ -21,12 +21,27 @@
         </md-list-item>
       </md-list>
     </md-sidenav>
-    <md-card ng-if='!project' flex layout='column' layout-align='start center' class='space-top'>
-      <img src="../images/pick.png" class='profile-pic' />
-      <p class='md-display-1 bold-text'>Pick someone to view their profile</p>
-    </md-card>
-    <md-content flex layout-padding ng-if='project'>
-      <md-card layout='row' class=' black-card md-padding'>
+    <md-content flex layout-padding>
+      <md-card ng-if='!project'>
+        <md-card-content>
+          <md-subheader class="md-no-sticky">
+            <h2>Dashboard</h2>
+            <md-divider></md-divider>
+          </md-subheader>
+          <md-subheader>
+            <i class='fa fa-hand-o-left fa-2x'>  </i> Select a project from the left panel to view scores
+          </md-subheader>
+        </md-card-content>
+        <br/>
+      </md-card>
+      <md-card ng-if='!project' class="dash">
+        <md-card-content>
+          <md-subheader class="md-no-sticky">
+          </md-subheader>
+        </md-card-content>
+        <br/>
+      </md-card>
+      <md-card layout='row' class=' black-card md-padding' ng-if='project'>
         <md-card class='profile-pic'>
           <img src="{{project.picture}}" flex>
         </md-card>
@@ -51,7 +66,7 @@
           </div>
         </div>
       </md-card>
-      <md-card class='md-padding md-margin' style='height: 250px'>
+      <md-card class='md-padding md-margin' style='height: 250px' ng-if='project'>
         <div layout='row' flex>
           <md-card class='card-blue md-margin md-padding' layout='column' flex>
             <div layout='row'>
@@ -91,7 +106,7 @@
           </md-card>
         </div>
       </md-card>
-      <div layout='row'>
+      <div layout='row' ng-if='project'>
         <md-card layout='column' class='md-margin md-padding' flex>
           <p class='md-display-1 bold-text packed-bottom packed-top'>Comments</p>
           <p class='packed-top packed-bottom'>{{message}}</p>

@@ -4,7 +4,6 @@
   <meta name="viewport" content="initial-scale=1" />
   <base href="/">
   <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
-  <link rel="stylesheet" href="lib/angular-chart.js/dist/angular-chart.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
@@ -54,7 +53,7 @@
           Menu
         </md-tooltip>
       </md-button>
-      <md-button class="md-icon-button" aria-label="menu" ng-if="user.hd" ng-click="showSheet($event)">
+      <md-button class="md-icon-button" aria-label="menu" ng-if="user.hd" ng-click="showSheet()">
         <i class="material-icons">more_vert</i>
         <md-tooltip md-direction="down">
           Menu
