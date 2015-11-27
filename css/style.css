@@ -107,8 +107,8 @@ md-content {
   -ms-filter: blur(4px);
   filter: blur(4px);
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 0;
   background: url("../images/rate.jpg") center center repeat-y;
@@ -140,13 +140,8 @@ md-content {
   background: green;
 }
 
-<<<<<<< HEAD .invite {
+.invite {
   max-width: 800px;
-}
-<<<<<<< HEAD
-
-.bottom-sheet {
-  background-color: #bbdefb;
 }
 
 .admin-side-nav {
@@ -200,8 +195,11 @@ md-content {
 }
 
 .profile-pic {
+  margin: 50 60px;
   width: 215px;
   height: 215px;
 }
-=======
->>>>>>> develop
+
+.dash {
+  height: 700px;
+}

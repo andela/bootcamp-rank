@@ -29,12 +29,14 @@ angular.module('bootrank.controllers', [])
             ref.child('bootcampers').child('invite').once('value', function(snapshot) {
               var emails = snapshot.val();
               var invited = false;
+              console.log(data);
               if (emails) {
                 for (var i = 0; i < emails.length; i++) {
-                  if (data.email.trim() === emails[i].trim()) {
+                  console.log(data.email + ':' + emails[i]);
+                  if (data.email === emails[i]) {
                     $rootScope.user = data;
                     invited = true;
-                    $state.go('projects');
+                    $state.go('home');
                     break;
                   }
                 }
@@ -76,7 +78,6 @@ angular.module('bootrank.controllers', [])
     function($scope, $rootScope, $state, $mdSidenav, Auth, Utils) {
       Auth.getProjects(function(projects) {
         $scope.projects = projects;
-        console.log(projects);
       });
 
       // side nav
@@ -98,7 +99,6 @@ angular.module('bootrank.controllers', [])
 
       $scope.submitRating = function() {
         if ($rootScope.user) {
-          console.log($rootScope.user);
           $scope.rating.scorer_name = $rootScope.user.name;
           $scope.rating.picture = $rootScope.user.picture;
           Auth.firebase
@@ -129,7 +129,6 @@ angular.module('bootrank.controllers', [])
   .controller('DashboardCtrl', ['$scope', '$mdSidenav', 'Auth', function($scope, $mdSidenav, Auth) {
     Auth.getProjects(function(projects) {
       $scope.projects = projects;
-      console.log(projects);
     });
     $scope.changeCurrentProject = function(project) {
       $mdSidenav('left').close();
@@ -189,13 +188,6 @@ angular.module('bootrank.controllers', [])
       console.log('Clicked me');
       window.open(link);
     };
-
-    $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-    $scope.series = ['Series A', 'Series B'];
-    $scope.data = [
-      [65, 59, 80, 81, 56, 55, 40],
-      [28, 48, 40, 19, 86, 27, 90]
-    ];
   }])
   .controller('ProjectCtrl', ['$scope', '$rootScope', '$state', 'Auth', 'Utils',
     function($scope, $rootScope, $state, Auth, Utils) {

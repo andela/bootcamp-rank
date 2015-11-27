@@ -41,7 +41,9 @@
           },
 
           getUser: function() {
-            return $window.localStorage.getItem('firebase:session::boot-rank');
+            if ($window.localStorage.getItem('firebase:session::boot-rank')) {
+              return JSON.parse($window.localStorage.getItem('firebase:session::boot-rank')).google.cachedUserProfile;
+            }
           },
 
           logout: function() {
