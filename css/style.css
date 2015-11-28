@@ -1,7 +1,12 @@
-.body {}
+.body {
+  font-family: "Roboto", "Open Sans", "Arial", "Verdana", sans-serif;
+  font-size: 1em;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
 
 
-/*material icons*/
+/* Material icons */
 
 .material-icons {
   font-family: 'Material Icons';
@@ -44,11 +49,12 @@
   font-size: 48px;
 }
 
+
+/* Material icons */
+
 .home {
-  background: url(../images/home.jpg) center center no-repeat;
-  background-size: cover;
   text-align: center;
-  height: 93vh;
+  height: 90vh;
   margin: 0 0px;
   text-align: center;
   padding-bottom: 0;
@@ -57,10 +63,10 @@
 }
 
 .home p {
-  margin-top: 200px;
+  margin-top: 150px;
   font-size: 3.5em;
-  color: orange;
-  text-shadow: 0 0 4px #333;
+  color: white;
+  text-shadow: 0 2px 4px #333;
   display: inline-block;
   margin-bottom: 0px
 }
@@ -71,13 +77,18 @@
   margin-top: 0px;
 }
 
-.login {
-  padding-top: 10px;
-  width: 300px;
+.login {}
+
+i.fa {
+  vertical-align: middle;
 }
 
 md-content {
   height: 100vh;
+}
+
+.inline {
+  display: inline;
 }
 
 .user-image {
@@ -87,6 +98,29 @@ md-content {
   border-radius: 50%;
   margin-right: 10px;
   margin-top: -2px;
+}
+
+.image-underlay {
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  background: url("../images/rate.jpg") center center repeat-y;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.image-overlay {
+  z-index: 5;
+  position: relative;
+  height: 90vh;
 }
 
 .md-icon-button {
@@ -100,4 +134,72 @@ md-content {
 .register-project {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.projects {
+  background: green;
+}
+
+.invite {
+  max-width: 800px;
+}
+
+.admin-side-nav {
+  background-color: rgb(63, 81, 200);
+}
+
+.packed-top {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.packed-bottom {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.list-item {
+  margin-left: 25px;
+}
+
+.card-blue {
+  background-color: rgb(78, 142, 247);
+}
+
+.card-green {
+  background-color: rgb(122, 191, 67);
+}
+
+.card-pink {
+  background-color: rgb(222, 23, 113);
+}
+
+.card-orange {
+  background-color: rgb(255, 186, 0);
+}
+
+.white-text {
+  color: white;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.black-card {
+  background-color: rgb(66, 66, 66);
+}
+
+.black-text {
+  color: rgb(66, 66, 66);
+}
+
+.profile-pic {
+  margin: 50 60px;
+  width: 215px;
+  height: 215px;
+}
+
+.dash {
+  height: 700px;
 }

@@ -1,13 +1,19 @@
 <md-card class="home">
-  <div class="jumbotron-image md-card-image">
-    <div class="image-overlay">
-      <p>WELCOME TO BOOTRANK</p>
-      <p class="jumbotron-middle-small-text">where your opinion matters</p>
-      <p>
-        <md-button class="md-raised md-warn" class="login" ng-click="login()">
-          <i class="material-icons">lock_open</i> Login with Google
-        </md-button>
-      </p>
+    <div class="jumbotron-image md-card-image">
+        <div class="image-underlay">
+        </div>
+        <div class="image-overlay">
+            <p>Welcome to Bootrank</p>
+            <p class="jumbotron-middle-small-text">Where your opinion counts</p>
+            <p>
+                <md-button class="md-raised md-warn login" ng-click="login()" ng-if="!user">
+                    <i class="fa fa-google-plus-square fa-2x"></i>
+                    <span>Login with Google</span>
+                </md-button>
+                 <md-button class="md-raised md-warn login" ui-sref="home" ng-if="user">
+                    <span>Go to Dashboard</span>
+                </md-button>
+            </p>
+        </div>
     </div>
-  </div>
 </md-card>

@@ -5,42 +5,13 @@
   <base href="/">
   <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <title>BootRank</title>
-</head>
-
-<body layout="column">
-  <md-toolbar ng-controller="LoginCtrl as ctrl">
-    <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" aria-label="Settings">
-        <i class="material-icons md-48">brightness_auto </i>
-      </md-button>
-      <h2>
-          <span>BootRank</span>
-        </h2>
-      <span flex></span>
-      <md-button aria-label="Favorite" ng-if="user">
-        {{user.name}}
-      </md-button>
-      <md-menu ng-if="user">
-        <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-          <img ng-src="{{user.picture}}" class="md-avatar user-image" alt="{{item.who}}" style="background-image: url('{{user.picture}})" />
-        </md-button>
-        <md-menu-content width="4">
-          <md-menu-item>
-            <md-button ng-click="ctrl.logout()">
-              <i class="material-icons"> lock_open</i> Logout
-            </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-      <span flex="1"></span>
-    </div>
-  </md-toolbar>
-  <md-content ui-view>
-  </md-content>
   <!-- Angular Material Dependencies -->
   <script src="lib/angular/angular.min.js"></script>
+  <script src="https://rawgit.com/nnnick/Chart.js/master/Chart.min.js"></script>
+  <script src="https://rawgit.com/jtblin/angular-chart.js/master/dist/angular-chart.min.js"></script>
   <script src="lib/angular-animate/angular-animate.min.js"></script>
   <script src="lib/angularfire/dist/angularfire.min.js"></script>
   <script src="lib/angular-aria/angular-aria.min.js"></script>
@@ -49,11 +20,60 @@
   <script src="lib/firebase/firebase.js"></script>
   <script src="lib/angularfire/dist/angularfire.min.js"></script>
   <!-- App servises -->
-  <script src="js/services/auth.js"></script>
+  <script src="js/services/services.js"></script>
   <!-- App controllers -->
   <script src="js/controllers/controllers.js"></script>
   <!-- App Scripts -->
   <script src="js/app.js"></script>
+  <title>BootRank</title>
+</head>
+
+<body layout="column">
+  <md-toolbar ng-controller="LoginCtrl as ctrl">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" hide-gt-md ng-click='openLeftMenu()' aria-label="openLeftMenu" ng-controller="HomeCtrl">
+        <i class="material-icons md-36">menu</i>
+      </md-button>
+      <div>
+        <md-button class="md-icon-button inline" ui-sref="home" aria-label="Settings">
+          <i class="material-icons md-36">brightness_auto</i>
+        </md-button>
+      </div>
+      <h2>
+        <span hide-md hide-sm>BootRank</span>
+      </h2>
+      <span flex></span>
+       <div>
+        <md-button class="md-icon-button inline" ng-if="!user" ui-sref="login" aria-label="Login page">
+          <i class="material-icons md-24">lock</i>
+          <md-tooltip md-direction="down">
+            Go to Login page
+          </md-tooltip>
+        </md-button>
+      </div>
+      <md-button aria-label="Favorite" ng-if="user">
+        {{user.name}}
+      </md-button>
+      <md-button aria-label="user.picture" class="md-icon-button" ng-if="user">
+        <img ng-src="{{user.picture}}" class="md-avatar user-image" alt="{{item.who}}" style="background-image: url('{{user.picture}})" />
+      </md-button>
+      <md-button class="md-icon-button" aria-label="logout" ng-if=" user && !user.hd" ng-click="logout()">
+        <i class="material-icons md-24">exit_to_app</i>
+        <md-tooltip md-direction="down">
+          Menu
+        </md-tooltip>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="menu" ng-if="user.hd" ng-click="showSheet()">
+        <i class="material-icons">more_vert</i>
+        <md-tooltip md-direction="down">
+          Menu
+        </md-tooltip>
+      </md-button>
+      <span flex="1"></span>
+    </div>
+  </md-toolbar>
+  <md-content ui-view>
+  </md-content>
 </body>
 
 </html>
