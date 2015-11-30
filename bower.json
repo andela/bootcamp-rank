@@ -1,5 +1,5 @@
 {
-  "name": "btcmprank",
+  "name": "bootrank",
   "description": "app to rate and vote on bootcamp projects",
   "main": "index.js",
   "authors": [

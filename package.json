@@ -1,18 +1,54 @@
 {
-  "name": "bootrank",
+  "name": "maktaba",
   "version": "1.0.0",
-  "description": "Andela Bootcamp projects rating app",
+  "description": "Document management system using Express and MongoDb",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "gulp heroku:production"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andela-cganga/btcmprank.git"
+    "url": "git+https://github.com/Andela-thomas/manager.git"
   },
-  "author": "Christopher Ganga, Thomas Nyambati",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andela-cganga/btcmprank/issues"
+    "url": "https://github.com/Andela-thomas/manager/issues"
   },
-  "homepage": "https://github.com/andela-cganga/btcmprank#readme"
+  "homepage": "https://github.com/Andela-thomas/manager#readme",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "browserify": "^11.2.0",
+    "cookie-parser": "~1.3.5",
+    "express": "~4.13.1",
+    "express-session": "^1.11.3",
+    "gulp": "^3.9.0",
+    "gulp-bower": "0.0.10",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-jade": "^1.1.0",
+    "morgan": "^1.6.1",
+    "stringify": "^3.1.0",
+    "gulp-less": "^3.0.3",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-path": "^2.0.2",
+    "gulp-uglify": "^1.4.1",
+    "gulp-util": "^3.0.6",
+    "jade": "~1.11.0",
+    "less-middleware": "1.0.x",
+    "morgan": "~1.6.1",
+    "stringify": "^3.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "engines": {
+    "node": ">=0.12.5"
+  }
 }
