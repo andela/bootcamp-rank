@@ -1,0 +1,38 @@
+.container.document
+  .card
+    .card-content
+      span.card-title
+        a(href="")
+            | {{document.title}}
+      hr
+      p {{document.content}}
+      br
+      .card-action
+        span.card-title.activator.grey-text.text-darken-4
+          i.material-icons.right edit
+        p
+          a(href="")
+            | By: {{user.name.first + ' ' + user.name.last}}
+    .card-reveal
+      .form
+        span.card-title.grey-text.text-darken-4
+          | Editing Document  {{document.title}}
+          i.material-icons.right close
+        hr
+        form.col.s12
+          .row
+            .input-field.col.s12
+              i.material-icons.prefix subject
+              input(ng-model="document.title" type="text")
+          .row
+            .input-field.col.s12
+              i.material-icons.prefix content_copy
+              textarea#content.materialize-textarea(ng-model="document.content")
+          .row
+            a(href="" ng-click="delete()")
+              i.material-icons.right delete
+            a(href="" ng-click="update()")
+             i.material-icons.right edit
+
+
+
