@@ -36,7 +36,7 @@ angular.module('bootrank.controllers', [])
                   if (data.email === emails[i]) {
                     $rootScope.user = data;
                     invited = true;
-                    $state.go('home');
+                    $state.go('projects');
                     break;
                   }
                 }
@@ -142,6 +142,7 @@ angular.module('bootrank.controllers', [])
       $scope.understanding = 0;
       var count = 0;
       $scope.comments = [];
+      $scope.export = [];
       for (var x in project.score) {
         count += 1;
         if (Number(project.score[x].confidence)) {
@@ -156,6 +157,15 @@ angular.module('bootrank.controllers', [])
         if (Number(project.score[x].understanding)) {
           $scope.understanding += Number(project.score[x].understanding);
         }
+
+        $scope.export.push({
+          name: 'Anonymous',
+          confidence: project.score[x].confidence,
+          quality: project.score[x].quality,
+          uiux: project.score[x].uiux,
+          understanding: project.score[x].understanding,
+          comment: (project.score[x].comment)
+        });
         $scope.comments.push({
           picture: project.score[x].picture,
           name: project.score[x].scorer_name,
@@ -182,6 +192,10 @@ angular.module('bootrank.controllers', [])
         $scope.understanding = $scope.understanding / count;
         $scope.understanding = Math.round($scope.understanding);
       }
+    };
+
+    $scope.getHeader = function() {
+      return ['Name', 'Confidence', 'Project quality', 'UI/UX', 'Project Understanding', 'Comments'];
     };
 
     $scope.openLink = function(link) {

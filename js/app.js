@@ -6,7 +6,8 @@
     'ui.router',
     'ngMaterial',
     'firebase',
-    'chart.js'
+    'ngCsv',
+    'ngSanitize'
   ]);
 
   window.app.run(['$rootScope', '$location', '$state', 'Auth',
