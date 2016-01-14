@@ -101,7 +101,11 @@ md-content {
 }
 
 .image-underlay {
-  filter: brightness(200%);
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
   position: fixed;
   top: 0;
   left: 0;

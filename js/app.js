@@ -1,37 +1,12 @@
 (function() {
   'use strict';
-  angular.module('bootrank.controllers', []);
-  angular.module('bootrank.services', []);
-  angular.module('bootrank.filters', []);
-  angular.module('bootrank.directives', []);
-
-  //Require Services
-  require('./services/auth');
-  require('./services/utils');
-  // require('./services/document');
-
-
-  // Require Controllers
-  // require('./controllers/footer');
-
-
-  require('./controllers/projects');
-  require('./controllers/dialog');
-  require('./controllers/dashboard');
-  require('./controllers/home');
-  require('./controllers/login');
-
-
   window.app = angular.module('bootrank', [
-    'bootrank.controllers',
     'bootrank.services',
-    'bootrank.filters',
-    'bootrank.directives',
+    'bootrank.controllers',
     'ui.router',
     'ngMaterial',
     'firebase',
-    'ngCsv',
-    'ngSanitize'
+    'chart.js'
   ]);
 
   window.app.run(['$rootScope', '$location', '$state', 'Auth',
@@ -44,14 +19,13 @@
         }
         $state.go('login');
       });
-
     }
   ]);
 
-  window.app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThemingProvider',
-    function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
+  window.app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
+    function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
       // For any unmatched url, redirect to /404
-      $urlRouterProvider.otherwise('404');
+      $urlRouterProvider.otherwise('/');
       $mdThemingProvider.theme('default')
         .backgroundPalette('grey', {
           default: '200'
@@ -78,12 +52,15 @@
           controller: 'ProjectCtrl',
           templateUrl: 'views/project.html'
         })
+        .state('admin', {
+          url: '/admin',
+          controller: 'AdminCtrl',
+          templateUrl: 'views/admin-panel.html'
+        })
         .state('404', {
           url: '/404',
           templateUrl: 'views/404.html'
         });
-
-      $locationProvider.html5Mode(true);
     }
   ]);
 
