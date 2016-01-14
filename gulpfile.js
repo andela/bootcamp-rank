@@ -2,6 +2,8 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   jade = require('gulp-jade'),
   bower = require('gulp-bower'),
+  //uglify = require('gulp-uglify'),
+  buffer = require('vinyl-buffer'),
   gutil = require('gulp-util'),
   browserify = require('browserify'),
   path = require('path'),
@@ -57,6 +59,8 @@ gulp.task('browserify', function() {
     // vinyl-source-stream makes the bundle compatible with gulp
     .pipe(source('app.js')) // Desired filename
     // Output the file
+    .pipe(buffer())
+    //.pipe(uglify)
     .pipe(gulp.dest('./public/js/'));
 });
 
