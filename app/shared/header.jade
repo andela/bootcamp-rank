@@ -1,0 +1,28 @@
+md-toolbar(ng-controller='LoginCtrl as ctrl')
+  .md-toolbar-tools
+    md-button.md-icon-button(aria-label='Settings', hide-gt-md='', ng-click='openLeftMenu()')
+      i.material-icons.md-36 menu
+    div
+      md-button.md-icon-button.inline(ui-sref='home', aria-label='Settings')
+        i.material-icons.md-36 brightness_auto
+    h2
+      span(hide-md='', hide-sm='') BootRank
+    span(flex='')
+    div
+      md-button.md-icon-button.inline(ng-if='!user', ui-sref='login', aria-label='Login page')
+        i.material-icons.md-24 lock
+        md-tooltip(md-direction='down')
+          | Go to Login page
+    md-button(aria-label='Favorite', ng-if='user')
+      | {{user.name}}
+    md-button.md-icon-button(aria-label='user.picture', ng-if='user')
+      img.md-avatar.user-image(ng-src='{{user.picture}}', alt='{{item.who}}', style="background-image: url('{{user.picture}})")
+    md-button.md-icon-button(aria-label='logout', ng-if=' user && !user.hd', ng-click='logout()')
+      i.material-icons.md-24 exit_to_app
+      md-tooltip(md-direction='down')
+        | Menu
+    md-button.md-icon-button(aria-label='menu', ng-if='user.hd', ng-click='showSheet()')
+      i.material-icons more_vert
+      md-tooltip(md-direction='down')
+        | Menu
+    span(flex='1')

@@ -1,5 +1,5 @@
 {
-  "name": "btcmprank",
+  "name": "bootrank",
   "description": "app to rate and vote on bootcamp projects",
   "main": "index.js",
   "authors": [
@@ -21,6 +21,7 @@
     "angular-ui-router": "~0.2.15",
     "angularfire": "~1.1.3",
     "firebase": "~2.3.2",
-    "font-awesome": "~4.5.0"
+    "font-awesome": "~4.5.0",
+    "ng-csv": "~0.3.6"
   }
 }

@@ -1,0 +1,11 @@
+md-card.home
+  .jumbotron-image.md-card-image
+    .image-underlay
+    .image-overlay
+      p Welcome to Bootrank
+      p.jumbotron-middle-small-text Where your opinion counts
+      p
+        md-button.md-raised.md-warn.login( aria-label="login" ng-click='login()', ng-if='!user' )
+          img(ng-src="../images/google.png")
+        md-button.md-raised.md-warn.login( aria-label="dashboard" ui-sref='home', ng-if='user')
+          span Go to Dashboard

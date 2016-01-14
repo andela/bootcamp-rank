@@ -1,9 +1,0 @@
-{
-  "firebase": "boot-rank",
-  "public": "/",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ]
-}
